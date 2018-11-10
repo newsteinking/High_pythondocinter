@@ -39,6 +39,7 @@ release = 'DEV'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+'sphinxcontrib.cjk'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -109,7 +110,11 @@ htmlhelp_basename = 'pythonintemediatedoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
-
+LATEX_PREAMBLE = r'''
+\usepackage{xeCJK}
+\setCJKmainfont{MS Mincho}
+\setCJKsansfont{MS Gothic}
+'''
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
@@ -122,7 +127,7 @@ latex_elements = {
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
-
+     'preamble': LATEX_PREAMBLE,
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
