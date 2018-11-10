@@ -53,6 +53,12 @@ templates_path = ['_templates']
 # source_suffix = ['.rst', '.md']
 source_suffix = '.rst'
 
+#for korean
+source_encoding = 'cp949'
+
+
+
+
 # The master toctree document.
 master_doc = 'index'
 
