@@ -9,7 +9,7 @@ chapter 4: Functions, the Building Blocks of Code
 ~~~~~~~~~~~~~~~~
 
 
-.. image:: ./img/chapter0_1.jpg
+.. image:: ./img/chapter0_2.png
 
 
 .. sourcecode:: bash
@@ -108,7 +108,7 @@ Then in your ``conf.py``:
 
 4.10 One final example
 -------------------
-이 장을 끝내가 전에 다음 예제을 풀어보자.
+이 장을 끝내기 전에 다음 예제을 풀어보자.
 일정 숫자 리스트에서 소수를 찾는 코드이다.
 
 .. code-block:: python
