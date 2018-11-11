@@ -18,18 +18,7 @@ Thanks to
      다들 다른곳에서 각자 열심히 일하는데 모두들 건승하길 바랍니다.
 .
 
-.. sourcecode:: pot
 
-   msgid ""
-   msgstr ""
-   "Locale: ko_KR\n"
-   "Content-Type: text/plain; charset=utf-8\n"
-   "Content-Transfer-Encoding: 8bit\n"
-
-   msgid "I like a {0}."
-   msgstr "나는 {0:을} 좋아합니다."
-
-.
 
 - sean
 - Mr Ju SS

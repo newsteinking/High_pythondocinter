@@ -8,8 +8,8 @@ chapter 4: Functions, the Building Blocks of Code
 4.1.1 Linux
 ~~~~~~~~~~~~~~~~
 
-.. figure:: img/chapter0-2.png
-    :align: center
+
+.. image:: ./img/chapter0_1.jpg
 
 
 .. sourcecode:: bash
@@ -99,7 +99,9 @@ Then in your ``conf.py``:
 ---------------------------
 파이썬은 다양한 내장 함수들이 있다.
 내장함수를 다 거론하기는 힘들고 아래 정도가 많이 쓰이는 것들이다.
+
 .. sourcecode:: bash
+
     $any, bin, bool, divmod, filter, float, getattr, id, int, len, list, min, print, set, tuple, type, and zip
 .
 
