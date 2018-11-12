@@ -7,7 +7,7 @@ Python Intermediate
 
 .. image:: ./img/chapter0_4.png
 
-.. image:: ./img/chapter0_3.png
+.. image:: ./img/chapter0_5.png
 
 `Github <https://github.com/newsteinking/pythondocinter>`_ | https://github.com/newsteinking/pythondocinter
 
