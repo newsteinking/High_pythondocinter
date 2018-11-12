@@ -5,7 +5,7 @@ Chapter 0: About
 
                         by sean
    Base on  Python : Journey form Novice to Expert
-.. image:: ./img/chapter0_1.jpg
+.. image:: ./img/chapter0_1.png
 
 .. _default_args:
 

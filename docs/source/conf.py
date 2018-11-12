@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'pythonintemediate'
+project = 'Python Intermediate'
 copyright = '2018, sean'
 author = 'sean'
 
