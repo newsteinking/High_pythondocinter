@@ -21,7 +21,7 @@ Map 함수는 파이썬 문서에서 다음과 같이 설명되어 있다
     passed, function must take that many arguments and is applied to the items from
     all iterables in parallel. With multiple iterables, the iterator stops when the shortest
     iterable is exhausted
-.
+
 다음 예제를 보자.
 
 .. code-block:: python
@@ -42,7 +42,7 @@ Map 함수는 파이썬 문서에서 다음과 같이 설명되어 있다
     >>> list(map(lambda *a: a, (1, 2, 3, 4), 'abc'))  # 'abc' shortest
     [(1, 'a'), (2, 'b'), (3, 'c')]
 
-.
+
 
 위 예제에서 range(3)을 이용하여 lamda 함수를 이용하여 map object를 만들었고 다음은 list에 넣었다.
 그 다음은 반복적으로 2번,3번 수행한 것들이다.
@@ -61,7 +61,7 @@ zip
     i-th element from each of the argument sequences or iterables. The iterator stops
     when the shortest input iterable is exhausted. With a single iterable argument, it
     returns an iterator of 1-tuples. With no arguments, it returns an empty iterator.
-.
+
 
 
 이전 장에서 zip의 용법을 사용했었다.
@@ -75,7 +75,7 @@ zip
     [(22, 18), (21, 23), (29, 30), (24, 27), (18, 15), (18, 9), (24, 22)]
     >>> list(map(lambda *a: a, avgs, grades))  # equivalent to zip
     [(22, 18), (21, 23), (29, 30), (24, 27), (18, 15), (18, 9), (24, 22)]
-.
+
 
 zip과 map이 사용되는 다음 예제를 보자.
 
@@ -87,7 +87,7 @@ zip과 map이 사용되는 다음 예제를 보자.
     >>> maxs = map(lambda n: max(*n), zip(a, b, c))
     >>> list(maxs)
     [6, 9, 2, 9, 7]
-.
+
 
 
 filter
@@ -100,7 +100,7 @@ filter
     of iterable for which function returns True. iterable may be either a sequence, a
     container which supports iteration, or an iterator. If function is None, the identity
     function is assumed, that is, all elements of iterable that are false are removed.
-.
+
 예제를 보도록 하자
 
 .. code-block:: python
@@ -112,7 +112,7 @@ filter
     [2, 5, 8, 1]
     >>> list(filter(lambda x: x > 4, test))  # keep only items > 4
     [5, 8]
-.
+
 
 
 
@@ -138,7 +138,7 @@ filter
     >>> list(squares)
     [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
-.
+
 상기 코드와 동일하게 다음과 같이 표현할 수 있다.
 
 .. code-block:: python
@@ -146,7 +146,7 @@ filter
     >>> [n ** 2 for n in range(10)]
     [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
-.
+
 
 
 Nested Comprehensions
@@ -165,7 +165,7 @@ Nested Comprehensions
 
     print(pairs)
 
-.
+
 list comprehensions으로 변경한 다음 코드를 보자.
 
 .. code-block:: python
@@ -175,7 +175,7 @@ list comprehensions으로 변경한 다음 코드를 보자.
         for a in range(len(items)) for b in range(a, len(items))]
 
     print(pairs)
-.
+
 
 Filtering a comprehension
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -195,7 +195,7 @@ Pythagorean triple 예제를 보자 (a2 + b2 = c2)
         filter(lambda triple: triple[2].is_integer(), legs))
 
     print(legs)  # prints: [(3, 4, 5.0), (6, 8, 10.0)]
-.
+
 inter로 리턴하는 예제를 보자.
 
 .. code-block:: python
@@ -212,7 +212,7 @@ inter로 리턴하는 예제를 보자.
         map(lambda triple: triple[:2] + (int(triple[2]), ), legs))
 
     print(legs)  # prints: [(3, 4, 5), (6, 8, 10)]
-.
+
 
 list comprehesion으로 표현해 보자.
 
@@ -227,7 +227,7 @@ list comprehesion으로 표현해 보자.
     legs = [(a, b, int(c)) for a, b, c in legs if c.is_integer()]
 
     print(legs)  # prints: [(3, 4, 5), (6, 8, 10)]
-.
+
 
 
 

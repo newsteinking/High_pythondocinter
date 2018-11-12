@@ -77,7 +77,7 @@ chapter 4: Functions, the Building Blocks of Code
 .. sourcecode:: bash
 
     $any, bin, bool, divmod, filter, float, getattr, id, int, len, list, min, print, set, tuple, type, and zip
-.
+
 
 
 4.10 One final example
@@ -142,7 +142,8 @@ Return the square root of x.
         print(test())
 
         print(get_primes(100))
-.
+
+
 
 소수 구하는 프로그램은 앞장에서도 다른 함수를 이용해서 배웠다.
 
@@ -161,7 +162,7 @@ Return the square root of x.
 
     print(primes)
 
-.
+
 
 
 
@@ -202,7 +203,7 @@ Return the square root of x.
         # body of the function here...
         return connection
 
-.
+
 
 
 
@@ -221,7 +222,7 @@ Return the square root of x.
 .
 예제에서 다음과 같은 lib와 함수 호출하는것을 생각해 보자
 
-
+::
 
     ├── func_from.py
     ├── func_import.py
@@ -242,7 +243,7 @@ fundef.py
 
     def cube(n):
         return n ** 3
-.
+
 func_import.py
 
 .. code-block:: python
@@ -252,7 +253,7 @@ func_import.py
 
     print(lib.funcdef.square(10))
     print(lib.funcdef.cube(10))
-.
+
 func_from.py
 
 .. code-block:: python
@@ -261,7 +262,7 @@ func_from.py
 
     print(square(10))
     print(cube(10))
-.
+
 
 
 
@@ -273,7 +274,7 @@ Absolute Imports
  : An absolute import specifies the resource to be imported using its full path from the project’s root folder.
 
 다음과 같은 구조를 가지고 있다고 하자.
-
+::
 
     └── project
         ├── package1
@@ -285,7 +286,7 @@ Absolute Imports
             ├── module4.py
             └── subpackage1
                 └── module5.py
-.
+
 Absolute imports는 다음과 같이 호출한다.
 .. code-block:: python
 
@@ -293,7 +294,7 @@ Absolute imports는 다음과 같이 호출한다.
     from package1.module2 import function1
     from package2 import class1
     from package2.subpackage1.module5 import function2
-.
+
 
 Relative Imports
   :A relative import specifies the resource to be imported relative to the current location—that is, the location where the import statement is
@@ -303,7 +304,7 @@ Relative Imports
     from .some_module import some_class
     from ..some_package import some_function
     from . import some_class
-.
+
 
 One clear advantage of relative imports is that they are quite succinct(간결하다)
 
