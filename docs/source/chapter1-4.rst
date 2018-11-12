@@ -7,9 +7,6 @@ chapter 4: Functions, the Building Blocks of Code
 
 
 
-
-
-
 4.2 Scopes and name resolution
 ---------------------------------
 
