@@ -221,7 +221,7 @@ Return the square root of x.
 .
 예제에서 다음과 같은 lib와 함수 호출하는것을 생각해 보자
 
-.. code-block:: python
+
 
     ├── func_from.py
     ├── func_import.py
@@ -273,7 +273,7 @@ Absolute Imports
  : An absolute import specifies the resource to be imported using its full path from the project’s root folder.
 
 다음과 같은 구조를 가지고 있다고 하자.
-.. code-block:: python
+
 
     └── project
         ├── package1
