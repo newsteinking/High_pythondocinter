@@ -196,7 +196,7 @@ Pythagorean triple 예제를 보자 (a2 + b2 = c2)
 
     print(legs)  # prints: [(3, 4, 5.0), (6, 8, 10.0)]
 
-inter로 리턴하는 예제를 보자.
+intger로 리턴하는 예제를 보자.
 
 .. code-block:: python
 

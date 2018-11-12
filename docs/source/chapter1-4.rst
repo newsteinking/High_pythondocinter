@@ -219,7 +219,7 @@ Return the square root of x.
     from module_name import function_name
     from mymodule import myfunc as better_named_func  ## 다른 함수 이름으로 변경
     from module_name import *    ## 모듈의 모든 함수를 import, 성능 문제 고민
-.
+
 예제에서 다음과 같은 lib와 함수 호출하는것을 생각해 보자
 
 ::
@@ -229,7 +229,7 @@ Return the square root of x.
     ├── lib
     ├── funcdef.py
     └── __init__.py
-.
+
 파이썬에서는 패키지를 정의할때 __init__.py 파일을 집어 넣어야 한다.
 
 코드는 다름과 같다.
@@ -271,7 +271,7 @@ func_from.py
 
 Absolute Imports
 
- : An absolute import specifies the resource to be imported using its full path from the project’s root folder.
+  An absolute import specifies the resource to be imported using its full path from the project’s root folder.
 
 다음과 같은 구조를 가지고 있다고 하자.
 ::
@@ -297,8 +297,10 @@ Absolute imports는 다음과 같이 호출한다.
 
 
 Relative Imports
-  :A relative import specifies the resource to be imported relative to the current location—that is, the location where the import statement is
+  A relative import specifies the resource to be imported relative to the current location—that is, the location where the import statement is
+
 예제를 보면 다음과 같다.
+
 .. code-block:: python
 
     from .some_module import some_class
