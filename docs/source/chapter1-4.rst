@@ -182,7 +182,7 @@ Return the square root of x.
 
 예제를 보자
 
-.. code-block::Python
+.. code-block:: python
 
     def square(n):
         """Return the square of a number n. """
@@ -218,7 +218,7 @@ Return the square root of x.
 파이썬에서는 많은 함수들을 쓸수 있다.
 이러한 함수를 쓰려면 다음의 방법들이 있다.
 
-.. code-block::Python
+.. code-block:: python
 
     import module_name
     from module_name import function_name
@@ -227,7 +227,7 @@ Return the square root of x.
 .
 예제에서 다음과 같은 lib와 함수 호출하는것을 생각해 보자
 
-.. code-block::Python
+.. code-block:: python
 
     ├── func_from.py
     ├── func_import.py
@@ -239,7 +239,7 @@ Return the square root of x.
 
 코드는 다름과 같다.
 fundef.py
-.. code-block::Python
+.. code-block:: python
 
     def square(n):
         return n ** 2
@@ -250,7 +250,7 @@ fundef.py
 .
 func_import.py
 
-.. code-block::Python
+.. code-block:: python
 
     import lib.funcdef
 
@@ -260,7 +260,7 @@ func_import.py
 .
 func_from.py
 
-.. code-block::Python
+.. code-block:: python
 
     from lib.funcdef import square, cube
 
@@ -278,7 +278,7 @@ Absolute Imports
  : An absolute import specifies the resource to be imported using its full path from the project’s root folder.
 
 다음과 같은 구조를 가지고 있다고 하자.
-.. code-block::Python
+.. code-block:: python
 
     └── project
         ├── package1
@@ -292,7 +292,7 @@ Absolute Imports
                 └── module5.py
 .
 Absolute imports는 다음과 같이 호출한다.
-.. code-block::Python
+.. code-block:: python
 
     from package1 import module1
     from package1.module2 import function1
@@ -303,7 +303,7 @@ Absolute imports는 다음과 같이 호출한다.
 Relative Imports
   :A relative import specifies the resource to be imported relative to the current location—that is, the location where the import statement is
 예제를 보면 다음과 같다.
-.. code-block::Python
+.. code-block:: python
 
     from .some_module import some_class
     from ..some_package import some_function

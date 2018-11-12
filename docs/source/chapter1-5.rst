@@ -14,7 +14,7 @@ Map
 ~~~~~~~~~~~~~~~~
 Map 함수는 파이썬 문서에서 다음과 같이 설명되어 있다
 
-.. code-block::Python
+.. code-block:: python
 
     map(function, iterable, ...) returns an iterator that applies function
     to every item of iterable, yielding the results. If additional iterable arguments are
@@ -24,7 +24,7 @@ Map 함수는 파이썬 문서에서 다음과 같이 설명되어 있다
 .
 다음 예제를 보자.
 
-.. code-block::Python
+.. code-block:: python
 
     >>> map(lambda *a: a, range(3))  # without wrapping in list...
     <map object at 0x7f563513b518>  # we get the iterator object
@@ -55,7 +55,7 @@ zip
 ~~~~~~~~~~~~~~~~
 파이썬 문서의 의하면 다음과 같이 정의되어 있다.
 
-.. code-block::Python
+.. code-block:: python
 
     zip(*iterables) returns an iterator of tuples, where the i-th tuple contains the
     i-th element from each of the argument sequences or iterables. The iterator stops
@@ -67,7 +67,7 @@ zip
 이전 장에서 zip의 용법을 사용했었다.
 다음 예제을 보자.
 
-.. code-block::Python
+.. code-block:: python
 
     >>> grades = [18, 23, 30, 27, 15, 9, 22]
     >>> avgs = [22, 21, 29, 24, 18, 18, 24]
@@ -79,7 +79,7 @@ zip
 
 zip과 map이 사용되는 다음 예제를 보자.
 
-.. code-block::Python
+.. code-block:: python
 
     >>> a = [5, 9, 2, 4, 7]
     >>> b = [3, 7, 1, 9, 2]
@@ -94,7 +94,7 @@ filter
 ~~~~~~~~~~~~~~~~
 파이썬 문서의 의하면 다음과 같이 정의되어 있다.
 
-.. code-block::Python
+.. code-block:: python
 
     filter(function, iterable) construct an iterator from those elements
     of iterable for which function returns True. iterable may be either a sequence, a
@@ -103,7 +103,7 @@ filter
 .
 예제를 보도록 하자
 
-.. code-block::Python
+.. code-block:: python
 
     >>> test = [2, 5, 8, 0, 0, 1, 0]
     >>> list(filter(None, test))
@@ -124,7 +124,7 @@ filter
 
 다음 예제를 보자
 
-.. code-block::Python
+.. code-block:: python
 
     >>> squares = []
     >>> for n in range(10):
@@ -141,7 +141,7 @@ filter
 .
 상기 코드와 동일하게 다음과 같이 표현할 수 있다.
 
-.. code-block::Python
+.. code-block:: python
 
     >>> [n ** 2 for n in range(10)]
     [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
@@ -154,7 +154,7 @@ Nested Comprehensions
 
 다음 예제를 보자.
 
-.. code-block::Python
+.. code-block:: python
 
     items = 'ABCDE'
     pairs = []
@@ -168,7 +168,7 @@ Nested Comprehensions
 .
 list comprehensions으로 변경한 다음 코드를 보자.
 
-.. code-block::Python
+.. code-block:: python
 
     items = 'ABCDE'
     pairs = [(items[a], items[b])
@@ -182,7 +182,7 @@ Filtering a comprehension
 
 Pythagorean triple 예제를 보자 (a2 + b2 = c2)
 
-.. code-block::Python
+.. code-block:: python
 
     from math import sqrt
 
@@ -198,7 +198,7 @@ Pythagorean triple 예제를 보자 (a2 + b2 = c2)
 .
 inter로 리턴하는 예제를 보자.
 
-.. code-block::Python
+.. code-block:: python
 
     from math import sqrt
 
@@ -216,7 +216,7 @@ inter로 리턴하는 예제를 보자.
 
 list comprehesion으로 표현해 보자.
 
-.. code-block::Python
+.. code-block:: python
 
     from math import sqrt
     # this step is the same as before
