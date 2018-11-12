@@ -1,46 +1,26 @@
 chapter 4: Functions, the Building Blocks of Code
-=======================
+==================================================
 
 
 4.1 Why use functions?
--------------------
+-------------------------
 
 4.1.1 Linux
 ~~~~~~~~~~~~~~~~
 
 
-.. image:: ./img/chapter0_2.png
-
-
-.. sourcecode:: bash
-
-    $ pip install recommonmark
-
-Then in your ``conf.py``:
-
-.. code-block:: python
-
-    test
-
-
-
-
- .. code-block:: html
-
-
-    <div data-date="12/03/2012"></div>
 
 
 
 
 4.2 Scopes and name resolution
--------------------
+---------------------------------
 
 
 
 
 4.3 Input parameters
--------------------
+----------------------
 
 
 
@@ -52,17 +32,17 @@ Then in your ``conf.py``:
 
 
 4.5 A few useful tips
--------------------
+-----------------------
 
 
 
 4.6 Recursive functions
--------------------
+--------------------------
 
 
 
 4.7 Anonymous functions
--------------------
+---------------------------
 
 
 
@@ -107,9 +87,18 @@ Then in your ``conf.py``:
 
 
 4.10 One final example
--------------------
+-----------------------------
 이 장을 끝내기 전에 다음 예제을 풀어보자.
 일정 숫자 리스트에서 소수를 찾는 코드이다.
+
+여기서 수학적 함수들은 파이썬 문서에서 찾아보면 된다.
+https://docs.python.org/2/library/math.html
+
+math.ceil(x)
+Return the ceiling of x as a float, the smallest integer value greater than or equal to x.
+
+math.sqrt(x)
+Return the square root of x.
 
 .. code-block:: python
 
@@ -161,23 +150,174 @@ Then in your ``conf.py``:
         print(get_primes(100))
 .
 
+소수 구하는 프로그램은 앞장에서도 다른 함수를 이용해서 배웠다.
+
+.. code-block:: python
+
+    primes = []  # this will contain the primes in the end
+    upto = 100  # the limit, inclusive
+    for n in range(2, upto + 1):
+        is_prime = True  # flag, new at each iteration of outer for
+        for divisor in range(2, n):
+            if n % divisor == 0:
+                is_prime = False
+                break
+        if is_prime:  # check on flag
+            primes.append(n)
+
+    print(primes)
+
+.
 
 
 
 4.11 Documenting your code
--------------------
+----------------------------
+이 장에서는 코드에서 코멘트를 다는 연습을 하겠다.
 
+기본적으로 파이썬 코멘트는 다음과 같이 쓰인다.
+
+#  : 해당 기호 이후의 모든 코드를 코멘트 처리한다.
+""" comment """  : 전,후 기호까지 코멘트 처리한다.
+
+예제를 보자
+
+.. code-block::Python
+
+    def square(n):
+        """Return the square of a number n. """
+        return n ** 2
+
+    def get_username(userid):
+        """Return the username of a user given their id. """
+        return db.get(user_id=userid).username
+
+
+    def connect(host, port, user, password):
+        """Connect to a database.
+
+        Connect to a PostgreSQL database directly, using the given
+        parameters.
+
+        :param host: The host IP.
+        :param port: The desired port.
+        :param user: The connection username.
+        :param password: The connection password.
+        :return: The connection object.
+        """
+        # body of the function here...
+        return connection
+
+.
 
 
 
 4.12 Importing objects
+--------------------------
+
+파이썬에서는 많은 함수들을 쓸수 있다.
+이러한 함수를 쓰려면 다음의 방법들이 있다.
+
+.. code-block::Python
+
+    import module_name
+    from module_name import function_name
+    from mymodule import myfunc as better_named_func  ## 다른 함수 이름으로 변경
+    from module_name import *    ## 모듈의 모든 함수를 import, 성능 문제 고민
+.
+예제에서 다음과 같은 lib와 함수 호출하는것을 생각해 보자
+
+.. code-block::Python
+
+    ├── func_from.py
+    ├── func_import.py
+    ├── lib
+    ├── funcdef.py
+    └── __init__.py
+.
+파이썬에서는 패키지를 정의할때 __init__.py 파일을 집어 넣어야 한다.
+
+코드는 다름과 같다.
+fundef.py
+.. code-block::Python
+
+    def square(n):
+        return n ** 2
+
+
+    def cube(n):
+        return n ** 3
+.
+func_import.py
+
+.. code-block::Python
+
+    import lib.funcdef
+
+
+    print(lib.funcdef.square(10))
+    print(lib.funcdef.cube(10))
+.
+func_from.py
+
+.. code-block::Python
+
+    from lib.funcdef import square, cube
+
+    print(square(10))
+    print(cube(10))
+.
+
+
+
+4.13 Ralative import
+----------------------
+
+Absolute Imports
+
+ : An absolute import specifies the resource to be imported using its full path from the project’s root folder.
+
+다음과 같은 구조를 가지고 있다고 하자.
+.. code-block::Python
+
+    └── project
+        ├── package1
+        │   ├── module1.py
+        │   └── module2.py
+        └── package2
+            ├── __init__.py
+            ├── module3.py
+            ├── module4.py
+            └── subpackage1
+                └── module5.py
+.
+Absolute imports는 다음과 같이 호출한다.
+.. code-block::Python
+
+    from package1 import module1
+    from package1.module2 import function1
+    from package2 import class1
+    from package2.subpackage1.module5 import function2
+.
+
+Relative Imports
+  :A relative import specifies the resource to be imported relative to the current location—that is, the location where the import statement is
+예제를 보면 다음과 같다.
+.. code-block::Python
+
+    from .some_module import some_class
+    from ..some_package import some_function
+    from . import some_class
+.
+
+One clear advantage of relative imports is that they are quite succinct(간결하다)
+
+
+4.14 Summary
 -------------------
 
+이장에서 함수에 대해서 배웠고 import 방법을 배웠다.
 
-
-
-4.13 Summary
--------------------
 
 
 
