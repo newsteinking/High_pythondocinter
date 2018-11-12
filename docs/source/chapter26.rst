@@ -1,44 +1,30 @@
-chapter 1: Getting Started – One Environment per Project
-=======================
-
-Creating a virtual Python environment using venv 838
-Bootstrapping pip using ensurepip 843
-Installing C/C++ packages 844
-Summary
+chapter 26: Project 7: Your Own Bulletin Board
+===================================================
 
 
-1.1 Creating a virtual Python environment using venv
--------------------
-
-1.1.1 Linux
-~~~~~~~~~~~~~~~~
-
-Automatic Install Script
 
 
-::
-
-    $ sudo wget -qO- https://get.docker.com/ | sh
-
-remove hell-world
-
-::
-
-    $ sudo docker rm `sudo docker ps -aq`
-    $ sudo docker rmi hello-world
+26.1 What’s the Problem?
+---------------------------
 
 
-.
 
-
-1.2 Bootstrapping pip using ensurepip
+26.2 Useful Tools
 -------------------
 
 
-1.3 Installing C/C++ packages
+26.3 Preparations
 -------------------
 
 
-1.4 Summary
--------------------
+26.4 First Implementation
+---------------------------
+
+
+26.5 Second Implementation
+------------------------------
+
+
+26.6 Further Exploration
+-----------------------------
 

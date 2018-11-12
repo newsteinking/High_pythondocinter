@@ -1,64 +1,29 @@
-chapter 11: Python Design Patterns II
-=======================
-
-The adapter pattern 739
-The facade pattern 743
-The flyweight pattern 745
-The command pattern 749
-The abstract factory pattern 754
-The composite pattern 759
-Exercises 763
-Summary
-
-11.1 The adapter pattern
--------------------
-
-11.1.1 Linux
-~~~~~~~~~~~~~~~~
-
-Automatic Install Script
+chapter 23: Project 4: In the News
+=======================================
 
 
-::
-
-    $ sudo wget -qO- https://get.docker.com/ | sh
-
-remove hell-world
-
-::
-
-    $ sudo docker rm `sudo docker ps -aq`
-    $ sudo docker rmi hello-world
-
-
-.
+23.1 What’s the Problem?
+-------------------------------
 
 
 
-11.2 The facade pattern
+23.2 Useful Tools
 -------------------
 
 
-11.3 The flyweight pattern
+23.3 Preparations
 -------------------
 
 
-11.4 The command pattern
--------------------
+23.4 First Implementation
+-----------------------------
 
 
-11.5 The abstract factory pattern
--------------------
+23.5 Second Implementation
+------------------------------
 
 
-11.6 The composite pattern
--------------------
+23.6 Further Exploration
+------------------------------
 
-
-11.7 Exercises
--------------------
-
-
-11.8 Summary
--------------------
 

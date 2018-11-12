@@ -1,43 +1,32 @@
-chapter 3: Containers and Collections – Storing Data the Right Way
-=======================
-
-Time complexity – the big O notation 886
-Core collections 887
-Advanced collections 898
-Summary
-
-3.1 Time complexity – the big O notation
--------------------
-
-3.1.1 Linux
-~~~~~~~~~~~~~~~~
-
-Automatic Install Script
+chapter 28: Project 9: File Sharing II—Now with GUI!
+======================================================
 
 
-::
 
-    $ sudo wget -qO- https://get.docker.com/ | sh
-
-remove hell-world
-
-::
-
-    $ sudo docker rm `sudo docker ps -aq`
-    $ sudo docker rmi hello-world
+28.1 What’s the Problem?
+-----------------------------
 
 
-.
 
 
-3.2 Core collections
+28.2 Useful Tools
 -------------------
 
 
-3.3 Advanced collections
+28.3 Preparations
 -------------------
 
 
-3.4 Summary
--------------------
+28.4 First Implementation
+-----------------------------
+
+
+
+28.5 Second Implementation
+-----------------------------
+
+
+
+28.6 Further Exploration
+-----------------------------
 

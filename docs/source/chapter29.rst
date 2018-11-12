@@ -1,63 +1,32 @@
-chapter 4: Functional Programming – Readability Versus Brevity
-=======================
-
-Functional programming 918
-list comprehensions 918
-dict comprehensions 921
-set comprehensions 922
-lambda functions 922
-functools 925
-itertools 931
-Summary
-
-4.1 Functional programming
--------------------
-
-4.1.1 Linux
-~~~~~~~~~~~~~~~~
-
-Automatic Install Script
+chapter 29: Project 10: Do-It-Yourself Arcade Game
+======================================================
 
 
-::
 
-    $ sudo wget -qO- https://get.docker.com/ | sh
-
-remove hell-world
-
-::
-
-    $ sudo docker rm `sudo docker ps -aq`
-    $ sudo docker rmi hello-world
+29.1 What’s the Problem?
+-----------------------------
 
 
-.
 
 
-4.2 list comprehensions
+29.2 Useful Tools
 -------------------
 
 
-4.3 dict comprehensions
+29.3 Preparations
 -------------------
 
 
-4.4 set comprehensions
--------------------
+29.4 First Implementation
+-----------------------------
 
 
-4.5 lambda functions
--------------------
+
+29.5 Second Implementation
+-----------------------------
 
 
-4.6 functools
--------------------
 
-
-4.7 itertools
--------------------
-
-
-4.8 Summary
--------------------
+29.6 Further Exploration
+-----------------------------
 

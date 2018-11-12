@@ -1,58 +1,30 @@
-chapter 13: Concurrency
-=======================
-
-Threads 802
-Multiprocessing 807
-Futures 814
-AsyncIO 817
-Case study 826
-Exercises 833
-Summary
-
-13.1 Threads
--------------------
-
-13.1.1 Linux
-~~~~~~~~~~~~~~~~
-
-Automatic Install Script
+chapter 25: Project 6: Remote Editing with CGI
+================================================
 
 
-::
 
-    $ sudo wget -qO- https://get.docker.com/ | sh
-
-remove hell-world
-
-::
-
-    $ sudo docker rm `sudo docker ps -aq`
-    $ sudo docker rmi hello-world
+25.1 What’s the Problem?
+----------------------------
 
 
-.
 
 
-13.2 Multiprocessing
+25.2 Useful Tools
 -------------------
 
 
-13.3 Futures
+25.3 Preparations
 -------------------
 
 
-13.4 AsyncIO
--------------------
+25.4 First Implementation
+----------------------------
 
 
-13.5 Case study
--------------------
+25.5 Second Implementation
+------------------------------
 
 
-13.6 Exercises
--------------------
-
-
-13.7 Summary
+25.6 Further Exploration
 -------------------
 

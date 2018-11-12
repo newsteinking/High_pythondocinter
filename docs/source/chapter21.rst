@@ -1,64 +1,29 @@
-chapter 9: The Iterator Pattern
-=======================
-
-Design patterns in brief 677
-Iterators 678
-Comprehensions 681
-Generators 687
-Coroutines 692
-Case study 699
-Exercises 706
-Summary 707
-
-9.1 Design patterns in brief
--------------------
-
-9.1.1 Linux
-~~~~~~~~~~~~~~~~
-
-Automatic Install Script
-
-
-::
-
-    $ sudo wget -qO- https://get.docker.com/ | sh
-
-remove hell-world
-
-::
-
-    $ sudo docker rm `sudo docker ps -aq`
-    $ sudo docker rmi hello-world
-
-
-.
+chapter 21: Project 2: Painting a Pretty Picture
+===================================================
 
 
 
-9.2 Iterators
+21.1 What’s the Problem?
+---------------------------
+
+
+
+21.2 Useful Tools
 -------------------
 
 
-9.3 Comprehensions
--------------------
+21.3 Preparations
+----------------------
 
 
-9.4 Generators
--------------------
+21.4 First Implementation
+------------------------------
 
 
-9.5 Coroutine
--------------------
+21.5 Second Implementation
+-----------------------------
 
 
-9.6 Case study
--------------------
-
-
-9.7 Exercises
--------------------
-
-
-9.8 Summary
--------------------
+21.6 Further Exploration
+-----------------------------
 

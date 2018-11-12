@@ -1,62 +1,30 @@
-chapter 10: Python Design Patterns I
-=======================
-
-The decorator pattern 709
-The observer pattern 715
-The strategy pattern 718
-The state pattern 721
-The singleton pattern 728
-The template pattern 733
-Exercises 737
-Summary
-
-10.1 The decorator pattern
--------------------
-
-10.1.1 Linux
-~~~~~~~~~~~~~~~~
-
-Automatic Install Script
+chapter 22: Project 3: XML for All Occasions
+===============================================
 
 
-::
 
-    $ sudo wget -qO- https://get.docker.com/ | sh
-
-remove hell-world
-
-::
-
-    $ sudo docker rm `sudo docker ps -aq`
-    $ sudo docker rmi hello-world
+22.1 What’s the Problem?
+------------------------------
 
 
-.
 
 
-10.2 The observer pattern
+22.2 Useful Tools
 -------------------
 
 
-10.3 The strategy pattern
+22.3 Preparations
 -------------------
 
 
-10.4 The state pattern
--------------------
+22.4 First Implementation
+------------------------------
 
 
-10.5 The singleton pattern
--------------------
+22.5 Second Implementation
+------------------------------
 
 
-10.6 The template pattern
--------------------
+22.6 Further Exploration
+-----------------------------
 
-
-10.7 Exercises
--------------------
-
-
-10.8 Summary
--------------------

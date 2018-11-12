@@ -1,38 +1,28 @@
-chapter 2: Pythonic Syntax, Common Pitfalls, and Style Guide
-=======================
-
-Code style – or what is Pythonic code? 850
-Common pitfalls 871
-Summary
-
-2.1 ode style – or what is Pythonic code?
--------------------
-
-2.1.1 Linux
-~~~~~~~~~~~~~~~~
-
-Automatic Install Script
+chapter 27: Project 8: File Sharing with XML-RPC
+====================================================
 
 
-::
-
-    $ sudo wget -qO- https://get.docker.com/ | sh
-
-remove hell-world
-
-::
-
-    $ sudo docker rm `sudo docker ps -aq`
-    $ sudo docker rmi hello-world
+27.1 What’s the Problem?
+-----------------------------
 
 
-.
 
-
-2.2 Common pitfalls
+27.2 Useful Tools
 -------------------
 
 
-2.3 Summary
+27.3 Preparations
 -------------------
+
+
+27.4 First Implementation
+-----------------------------
+
+
+27.5 Second Implementation
+---------------------------------
+
+
+27.6 Further Exploration
+-----------------------------
 
