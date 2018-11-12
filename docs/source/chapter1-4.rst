@@ -5,9 +5,6 @@ chapter 4: Functions, the Building Blocks of Code
 4.1 Why use functions?
 -------------------------
 
-4.1.1 Linux
-~~~~~~~~~~~~~~~~
-
 
 
 
@@ -239,6 +236,7 @@ Return the square root of x.
 
 코드는 다름과 같다.
 fundef.py
+
 .. code-block:: python
 
     def square(n):
