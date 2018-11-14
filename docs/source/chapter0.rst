@@ -4,7 +4,7 @@ Chapter 0: About
   Python Intermediate Curriculm
 
                         by sean
-   Base on  Python : Journey form Novice to Expert
+   Base on  Beginning Python  From Novice to Professional
 .. image:: ./img/chapter0_1.png
 
 .. _default_args:
