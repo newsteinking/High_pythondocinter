@@ -96,29 +96,157 @@ Slicing
 
 슬라이싱은 본것과 같이 시퀀스에서 특정부분을 분리하는데 자주 쓰인다.
 여기서 앞숫자와 뒷숫자가 중요하다.
-처음숫자는 포함하고자하는 첫번째 엘리먼트 숫자이고 두번째는 첫 엘리먼트 이후 자르고자 하는 숫자이다.
+
+.. code-block:: python
+
+    >>> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    >>> numbers[3:6] [4, 5, 6]
+    >>> numbers[0:1] [1]
+
+처음숫자는 포함하고자하는 첫번째 엘리먼트 숫자이고 두번째는 자른후 첫번째 숫자이다.
+첫번째 숫자는 0부터 시작한다.
+첫번째는 inclusive 두번째는 exclusive 로 한계가 주어진다.
+
+
+A Nifty Shortcut
+~~~~~~~~~~~~~~~~~
+다음에서 마지막 3개 숫자를 선택해 보자.
+
+
+.. code-block:: python
+
+    >>> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    >>> numbers[7:10]
+    [8, 9, 10]
+여기서 10번째 숫자는 11번째에 있게 되지만 존재하지 않는 숫자이다.
+여기서 뒤에서부터 셈을 할때는 다음처럼 하면 된다.
+
+.. code-block:: python
+
+    >>> numbers[-3:-1]
+    [8, 9]
+여기서 마지막은 -1부터 시작한다.
+따라서 다음처럼 할수 없다.
+
+.. code-block:: python
+
+    >>> numbers[-3:0]
+    []
+
+다음처럼 생략할수도 있다.
+
+.. code-block:: python
+
+    >>> numbers[-3:]
+    [8, 9, 10]
+
+    >>> numbers[:3]
+    [1, 2, 3]
+
+시퀀스 전부를 복사하고자 하면 다음처럼 하면 된다.
+
+.. code-block:: python
+
+    >>> numbers[:]
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+Longer Steps
+~~~~~~~~~~~~~~
+슬라이싱할때 명시적 또는 암시적으로 시작점과 끝나는점을 표기할 수 있다.
+또다른 파라미터로서 스텝길이(step lenght)가 있다. 디폴트로 1이다.
+1이라는 것은 시작점에서 끝나는점까지 1개의 엘리먼트를 움직인다는 것이다.
+
+.. code-block:: python
+
+    >>> numbers[0:10:1]
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+step size가 1이상이면  엘리먼트를 뛰어넘을 것이다.
 
 
 
+.. code-block:: python
+
+    >>> numbers[0:10:2]
+    [1, 3, 5, 7, 9]
+    numbers[3:6:3]
+    [4]
+
+
+다음처럼 step size만 표시해도 된다.
+
+.. code-block:: python
+
+    >>> numbers[::4]
+    [1, 5, 9]
+
+스텝 사이즈는 0이 될수 없다.
+그러나 마이너스는 가능하다.그 의미는 오른쪽에서 왼쪽으로 엘리먼트를 뺀다는 것을 의미한다.
+
+
+.. code-block:: python
+
+    >>> numbers[8:3:-1]
+    [9, 8, 7, 6, 5]
+    >>> numbers[10:0:-2]
+    [10, 8, 6, 4, 2]
+    >>> numbers[0:10:-2]
+    []
+    >>> numbers[::-2]
+    [10, 8, 6, 4, 2]
+    >>> numbers[5::-2]
+    [6, 4, 2]
+    >>> numbers[:5:-2]
+    [10, 8]
+
+하나 고려해봐야 할것은 만약, step size가 마이너스라면 두번째 인덱스보다 큰 첫번째 인덱스를 가져야 한다.
+하지만 파이썬은 양의 스텝사이즈는 왼쪽에서 오른쪽 음의 스텝사이즈는 오른쪽에서 왼쪽으로 계산한다.
 
 
 
-Slicing
-~~~~~~~~~~
+Adding Sequences
+~~~~~~~~~~~~~~~~~~
+시퀀스는 플러스로 합칠 수 있다.
+
+.. code-block:: python
+
+    >>> [1, 2, 3] + [4, 5, 6]
+    [1, 2, 3, 4, 5, 6]
+    >>> 'Hello,' + 'world!'
+    'Hello, world!'
+    >>> [1, 2, 3] + 'world!'
+    Traceback (innermost last):
+    File "<pyshell>", line 1, in ?
+    [1, 2, 3] + 'world!'
+    TypeError: can only concatenate list (not "string") to list
+
+상기 에러에서 알수 있듯이 list와 string은 합칠 수가 없다. 일반적으로 다른 타입은 합칠 수가 없다.
+
+Multiplication
+~~~~~~~~~~~~~~~~
+숫자는 앞의 시퀀스를 반복한다는 의미이다.
+
+.. code-block:: python
 
 
-Slicing
-~~~~~~~~~~
+    >>> 'python' * 5
+    'pythonpythonpythonpythonpython'
+    >>> [42] * 10
+    [42, 42, 42, 42, 42, 42, 42, 42, 42, 42]
 
 
+None, Empty Lists, and Initialization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+빈 리스트는 []로 표기되며 초기화를 [0]*10  [42]*10 이런식으로 초기화를 할 수 있고
+[None]*10 은 아무것도 없다는 의미이다.
 
-Slicing
-~~~~~~~~~~
+.. code-block:: python
 
+    >>> sequence = [None] * 10
+    >>> sequence
+    [None, None, None, None, None, None, None, None, None, None]
 
-
-Slicing
-~~~~~~~~~~
 
 
 
