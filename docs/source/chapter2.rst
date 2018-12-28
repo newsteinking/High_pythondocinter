@@ -248,7 +248,83 @@ None, Empty Lists, and Initialization
     [None, None, None, None, None, None, None, None, None, None]
 
 
+다음 프로그램을 실행해 보자.
+입력한 글자를 가운데로 하고 네모난 박스를 그리는 프로그램이다.
 
+.. code-block:: python
+
+    # Prints a sentence in a centered "box" of correct width
+    sentence = input("Sentence: ")
+    screen_width = 80
+    text_width = len(sentence)
+    box_width = text_width + 6
+    left_margin = (screen_width - box_width) // 2
+    print()
+    print(' ' * left_margin + '+' + '-' * (box_width-2) + '+')
+    print(' ' * left_margin + '| ' + ' ' * text_width + ' |')
+    print(' ' * left_margin + '| ' + sentence + ' |')
+    print(' ' * left_margin + '| ' + ' ' * text_width + ' |')
+    print(' ' * left_margin + '+' + '-' * (box_width-2) + '+')
+    print()
+
+Membership
+~~~~~~~~~~~~~~
+시퀀스에서 어떤값이 있는지 체크할때가 있다. 이럴때 우리는 연산자를 사용한다. 이러한 연산자는 곱하기,더하기와는 다른 비트연산자를 쓴다.
+따라서 비트값에 따라 참값,거짓값을 반환하게 된다. 불린 연산자, 블린값이라고 한다.
+불린에 대해서는 5장에서 자세히 다루도록 하겠다.
+
+.. code-block:: python
+
+    >>> permissions = 'rw'
+    >>> 'w' in permissions
+    True
+    >>> 'x' in permissions
+    False
+    >>> users = ['mlh', 'foo', 'bar']
+    >>> input('Enter your user name: ') in users
+    Enter your user name: mlh
+    True
+    >>> subject = '$$$ Get rich now!!! $$$'
+    >>> '$$$' in subject
+    True
+
+다음 예제는 데이터베이스에 PIN 번호를 체크하는 것이다.
+
+.. code-block:: python
+
+
+# Check a user name and PIN code
+
+    database = [
+        ['albert',  '1234'],
+        ['dilbert', '4242'],
+        ['smith',   '7524'],
+        ['jones',   '9843']
+    ]
+
+    username = input('User name: ')
+    pin = input('PIN code: ')
+
+    if [username, pin] in database: print('Access granted')
+
+Length, Minimum, and Maximum
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+빌트인 함수인 len,min,max 는 아주 유용하다.len 함수는 시퀀스가 포함한 엘리먼트의 숫자를 리턴한다.
+min,max는 각각 시퀀스의 가장 작은수,큰 엘리먼트를 리턴한다.
+
+.. code-block:: python
+
+    >>> numbers = [100, 34, 678]
+    >>> len(numbers)
+    3
+    >>> max(numbers)
+    678
+    >>> min(numbers)
+    34
+    >>> max(2, 3)
+    3
+    >>> min(9, 3, 2, 5)
+    2
 
 
 
