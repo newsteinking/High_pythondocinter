@@ -331,7 +331,110 @@ min,max는 각각 시퀀스의 가장 작은수,큰 엘리먼트를 리턴한다
 
 2.3 Lists: Python's Workhorse
 -------------------------------
+이장에서는 list에 대해서 좀더 다루겠다.
+list는 변경가능하다. 따라서 여러가지 예를 들어 보고 사용을 알아보자.
 
+The list Function
+~~~~~~~~~~~~~~~~~~~
+list 함수를 이용해서 다음처럼 입력도 가능하다.
+
+.. code-block:: python
+
+
+    >>> list('Hello')
+    ['H', 'e', 'l', 'l', 'o']
+
+Basic List Operations
+~~~~~~~~~~~~~~~~~~~~~~
+list에도 indexing, slicing, concatenating,multiplying을 할 수 있다.
+재미있는 점은 list는 변경이 가능하다는 것이다.
+이 장에서는 list를 변경하는 예를 아이템 할당,삭제,슬라이스 할당등을 보도록 하겠다.
+
+Changing Lists: Item Assignments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+다음 예를 보자.
+
+.. code-block:: python
+
+
+    x[1] = 2.
+    >>> x = [1, 1, 1]
+    >>> x[1] = 2
+    >>> x
+    [1, 2, 1]
+
+Deleting Elements
+~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    >>> names = ['Alice', 'Beth', 'Cecil', 'Dee-Dee', 'Earl']
+    >>> del names[2]
+    >>> names
+    ['Alice', 'Beth', 'Dee-Dee', 'Earl']
+
+
+del 구문은 4장에서 좀더 상세하게 다루도록 하겠다.
+
+Assigning to Slices
+~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+
+    >>> name = list('Perl')
+    >>> name
+    ['P', 'e', 'r', 'l']
+    >>> name[2:] = list('ar')
+    >>> name
+    ['P', 'e', 'a', 'r']
+
+
+    >>> name = list('Perl')
+    >>> name[1:] = list('ython')
+    >>> name
+    ['P', 'y', 't', 'h', 'o', 'n']
+
+슬라이스 할당으로 다음처럼 처음 리스트를 교체하는것 없이 집어 넣을 수 있다.
+
+.. code-block:: python
+
+    >>> numbers = [1, 5]
+    >>> numbers[1:1] = [2, 3, 4]
+    >>> numbers
+    [1, 2, 3, 4, 5]
+
+다음처럼 빈 .list를 할당해서 지울수 도 있다.
+
+.. code-block:: python
+
+    >>> numbers
+    [1, 2, 3, 4, 5]
+    >>> numbers[1:4] = []
+    >>> numbers
+    [1, 5]
+
+이 예는 del numbers[1:4] 구문도 똑같다.
+
+List Methods
+~~~~~~~~~~~~~~~
+메쏘드는 함수이며 어떤 오브젝트에 밀접하게 연결되어 있다. (list,number,string)
+다음처럼 쓰인다.
+
+object.method(arguments)
+
+메쏘드 호출은 함수 호출과 유사하다. 단지 메쏘드 앞에 오브젝트가 들어간다는 것 뿐이다.
+
+append
+~~~~~~~~~~~~~~
+append 메쏘드는 list의 끝에  추가할때 사용된다.
+
+.. code-block:: python
+
+    >>> lst = [1, 2, 3]
+    >>> lst.append(4)
+    >>> lst
+    [1, 2, 3, 4]
 
 
 
