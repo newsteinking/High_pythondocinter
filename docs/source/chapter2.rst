@@ -436,11 +436,283 @@ append 메쏘드는 list의 끝에  추가할때 사용된다.
     >>> lst
     [1, 2, 3, 4]
 
+clear
+~~~~~~~~~~~~~~
+clear 메쏘드는 list를 비울때 사용된다.
+
+.. code-block:: python
+
+    >>> lst = [1, 2, 3]
+    >>> lst.clear()
+    >>> lst
+    []
+
+copy
+~~~~~~~~~~~~~~
+copy 메쏘드는 다음처럼 사용한다.
+
+.. code-block:: python
+
+
+    >>> a = [1, 2, 3]
+    >>> b = a
+    >>> b[1] = 4
+    >>> a
+    [1, 4, 3]
+
+또는 함수를 이용해서 다음처럼 사용해도 된다.
+
+    >>> a = [1, 2, 3]
+    >>> b = a.copy()
+    >>> b[1] = 4
+    >>> a
+    [1, 2, 3]
+
+count
+~~~~~~~~~~~~~~
+count 메쏘드는 다음처럼 사용한다.
+
+.. code-block:: python
+
+    >>> ['to', 'be', 'or', 'not', 'to', 'be'].count('to')
+    2
+    >>> x = [[1, 2], 1, 1, [2, 1, [1, 2]]]
+    >>> x.count(1)
+    2
+    >>> x.count([1, 2])
+    1
+
+extend
+~~~~~~~~~~~~~~
+extend 메쏘드는 다음처럼 사용한다.
+
+.. code-block:: python
+
+    >>> a = [1, 2, 3]
+    >>> b = [4, 5, 6]
+    >>> a.extend(b)
+
+다음처럼도 가능하다. 하지만 다음의 경우는 새롭게 만드는것이 아니라 두개를 연결한것이다.
+
+.. code-block:: python
+
+    >>> a = [1, 2, 3]
+    >>> b = [4, 5, 6]
+    >>> a + b
+    [1, 2, 3, 4, 5, 6]
+    >>> a
+    [1, 2, 3]
+
+다음처럼 실행해도 동일한 값을 얻는다.
+
+.. code-block:: python
+
+    >>> a = a + b
+
+ 다음처럼 슬라이스로 표현을 해도 동일한 값을 얻는다.
+
+.. code-block:: python
+
+    >>> a = [1, 2, 3]
+    >>> b = [4, 5, 6]
+    >>> a[len(a):] = b
+    >>> a
+    [1, 2, 3, 4, 5, 6]
+
+동일한 내용을 가지지만 가시성이 좀 안좋다.
+
+index
+~~~~~~~~~~~~
+index는 리스트에서 해당값이 처음 발생되는 위치를 알 수 있다.
+
+.. code-block:: python
+
+    >>> knights = ['We', 'are', 'the', 'knights', 'who', 'say', 'ni']
+    >>> knights.index('who')
+    4
+    >>> knights.index('herring')
+    Traceback (innermost last):
+    File "<pyshell>", line 1, in ?
+    knights.index('herring')
+    ValueError: list.index(x): x not in list
+
+반대로 다음처럼 index값을 넣으면 해당 값이 표시가 된다.
+
+.. code-block:: python
+
+    >>> knights[4]
+    'who'
+
+insert
+~~~~~~~~~~~~
+insert 함수는 리스트에 오브젝트를 넣을때 사용된다.
+
+.. code-block:: python
+
+    >>> numbers = [1, 2, 3, 5, 6, 7]
+    >>> numbers.insert(3, 'four')
+    >>> numbers
+    [1, 2, 3, 'four', 5, 6, 7]
+
+다음처럼 slice를 이용해도 동일한 값을 얻는다.
+
+.. code-block:: python
+
+    >>> numbers = [1, 2, 3, 5, 6, 7]
+    >>> numbers[3:3] = ['four']
+    >>> numbers
+    [1, 2, 3, 'four', 5, 6, 7]
+
+pop
+~~~~~~~~~~~~
+pop는 list에서 (디폴트 마지막 ) 엘리먼트를 삭제하고 결과값을 리턴한다.
+
+.. code-block:: python
+
+    >>> x = [1, 2, 3]
+    >>> x.pop()
+    3
+    >>> x
+    [1, 2]
+    >>> x.pop(0)
+    1
+    >>> x
+    [2]
+
+remove
+~~~~~~~~~~~~
+remove는 리스트에서 첫번째 발생되는 값을 지울때 사용된다.
+
+.. code-block:: python
+
+    >>> x = ['to', 'be', 'or', 'not', 'to', 'be']
+    >>> x.remove('be')
+    >>> x
+    ['to', 'or', 'not', 'to', 'be']
+    >>> x.remove('bee')
+    Traceback (innermost last):
+    File "<pyshell>", line 1, in ?
+    x.remove('bee')
+    ValueError: list.remove(x): x not in list
+
+remove는 리턴값이 없다.
+
+
+
+reverse
+~~~~~~~~~~~~
+reverse는 list를 반대로 정렬할때 쓰인다.
+
+.. code-block:: python
+
+    >>> x = [1, 2, 3]
+    >>> x.reverse()
+    >>> x
+    [3, 2, 1]
+
+
+sort
+~~~~~~~~~~~~
+sort는 리스트 정렬을 위해 사용된다.
+
+.. code-block:: python
+
+    >>> x = [4, 6, 2, 1, 7, 9]
+    >>> x.sort()
+    >>> x
+    [1, 2, 4, 6, 7, 9]
+
+다음처럼 sort에 대한 리턴값은 없기때문에 다음처럼 하면 아무값이 없게 된다.
+
+.. code-block:: python
+
+    >>> x = [4, 6, 2, 1, 7, 9]
+    >>> y = x.sort() # Don't do this!
+    >>> print(y)
+    None
+
+    >>> x = [4, 6, 2, 1, 7, 9]
+    >>> y = x.copy()
+    >>> y.sort()
+    >>> x
+    [4, 6, 2, 1, 7, 9]
+    >>> y
+    [1, 2, 4, 6, 7, 9]
+
+다음처럼 sorted 함수를 사용하여 다음처럼 동일하게 사용할 수 있다.
+
+.. code-block:: python
+
+    >>> x = [4, 6, 2, 1, 7, 9]
+    >>> y = sorted(x)
+    >>> x
+    [4, 6, 2, 1, 7, 9]
+    >>> y
+    [1, 2, 4, 6, 7, 9]
+
+Advanced Sorting
+~~~~~~~~~~~~~~~~~~~
+sort 함수는 2개의 옵션을 가지고 있다. key와 reverse 이다.
+
+.. code-block:: python
+
+
+    >>> x = ['aardvark', 'abalone', 'acme', 'add', 'aerate']
+    >>> x.sort(key=len)
+    >>> x
+    ['add', 'acme', 'aerate', 'abalone', 'aardvark']
+
+다음처럼 reverse 옵셥으로 True,False로 처리하면 된다.
+
+.. code-block:: python
+
+    >>> x = [4, 6, 2, 1, 7, 9]
+    >>> x.sort(reverse=True)
+    >>> x
+    [9, 7, 6, 4, 2, 1]
 
 
 2.4 Tuples:Immutable Sequence
 -------------------------------
+Tuples는 list와 동일하다. 다만 틀린점은 tuples는 변경이 불가능하다는 것이다.
 
+.. code-block:: python
+
+    >>> 1, 2, 3
+    (1, 2, 3)
+
+    >>> (1, 2, 3)
+    (1, 2, 3)
+
+    >>> ()
+    ()
+
+단일한 값을 갖는 tuple은 다음처럼 만들면 된다.다음처럼 콤마를 넣어주면 된다.
+
+.. code-block:: python
+
+    >>> 42
+    42
+    >>> 42,
+    (42,)
+    >>> (42,)
+    (42,)
+
+
+Advanced Sorting
+~~~~~~~~~~~~~~~~~~~
+
+
+Advanced Sorting
+~~~~~~~~~~~~~~~~~~~
+
+
+Advanced Sorting
+~~~~~~~~~~~~~~~~~~~
+
+
+Advanced Sorting
+~~~~~~~~~~~~~~~~~~~
 
 
 
