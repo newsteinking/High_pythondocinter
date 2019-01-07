@@ -698,25 +698,54 @@ Tuples는 list와 동일하다. 다만 틀린점은 tuples는 변경이 불가�
     >>> (42,)
     (42,)
 
+다음 2가지 예에서 처음은 tuple이 아니지만 두번째는 tuple이다.
 
-Advanced Sorting
-~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    >>> 3 * (40 + 2)
+    126
+    >>> 3 * (40 + 2,)
+    (42, 42, 42)
+
+다음처럼 list일경우는 tuple로 자동으로 변환된다.
 
 
-Advanced Sorting
-~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    >>> tuple([1, 2, 3])
+    (1, 2, 3)
+    >>> tuple('abc')
+    ('a', 'b', 'c')
+    >>> tuple((1, 2, 3))
+    (1, 2, 3)
+
+생성하는것이외에 쓰는것이 그리 복잡하지 않다.
+
+.. code-block:: python
+
+    >>> x = 1, 2, 3
+    >>> x[1]
+    2
+    >>> x[0:2]
+    (1, 2)
 
 
-Advanced Sorting
-~~~~~~~~~~~~~~~~~~~
 
-
-Advanced Sorting
-~~~~~~~~~~~~~~~~~~~
 
 
 
 2.5 A Quick Summary
 ----------------------
 
+이 장에서는 다음을 배웠다.
 
+Sequences: A sequence is a data structure in which the elements are numbered
+(starting with zero).
+
+
+Membership: Whether a value can be found in a sequence (or other container)
+
+
+Methods: Some of the built-in types (such as lists and strings but not tuples)
+
+.. image:: ./img/chapter2-1.png
