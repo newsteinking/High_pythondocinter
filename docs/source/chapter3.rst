@@ -86,6 +86,146 @@ python 3.6에서는 대체되는 필드에 상응하는 동일한 이름을 가�
 
 3.3 String Formatting: The Long Version
 -----------------------------------------
+format string은 모든 것이 옵션인 field name,ocnversation flag,format specifier등으로 구성된 교체필드에서 발견된다.
+
+Replacement Field Names
+~~~~~~~~~~~~~~~~~~~~~~~~
+다음처럼 지정된 필드와 지정되지 않은 필드가 있을때 나타나는 것을 보자.
+
+.. code-block:: python
+
+    >>> "{foo} {} {bar} {}".format(1, 2, bar=4, foo=3)
+    '3 1 4 2'
+
+
+    >>> "{foo} {1} {bar} {0}".format(1, 2, bar=4, foo=3)
+    '3 2 4 1'
+
+지정되지 않은 필드에 대한 순서를 바뀌어 나오게 할 수도 있다.
+
+수동,자동 숫자 매기기의 혼합은 허용이 안된다.
+어찌됐건 혼란을 일으킨다.
+그것 자체로 할당된 값을 사용하지 말아야 한다.그것들의 일부로서 접근할 수 있다.
+
+.. code-block:: python
+
+    >>> fullname = ["Alfred", "Smoketoomuch"]
+    >>> "Mr {name[1]}".format(name=fullname)
+    'Mr Smoketoomuch'
+    >>> import math
+    >>> tmpl = "The {mod.__name__} module defines the value {mod.pi} for π"
+    >>> tmpl.format(mod=math)
+    'The math module defines the value 3.141592653589793 for π'
+
+
+Basic Conversions
+~~~~~~~~~~~~~~~~~~~
+특별한 필드가 포함된다면 어떻게 포맷을 할 수 있는지 지시를 할 수 있다.
+일단 변환 플래그를 제공할 수 있다.
+
+.. code-block:: python
+
+    >>> print("{pi!s} {pi!r} {pi!a}".format(pi="π"))
+    π 'π' '\u03c0'
+
+여기서 s,r,a는 각각 str,replr,ascii로 구분된다.
+또한 값의 타입을 변경할 수 있다.
+
+.. code-block:: python
+
+    >>> "The number is {num}".format(num=42)
+    'The number is 42'
+    >>> "The number is {num:f}".format(num=42)
+    'The number is 42.000000'
+첫번째는 integer값을 넣었지만 decimal 값으로 표시되었고 두번째는 :f를 넣어(fixed point) 로 표현되었다.
+
+다음처럼 바이너리 표현으로 할 수도 있다.
+
+.. code-block:: python
+
+    >>> "The number is {num:b}".format(num=42)
+    'The number is 101010'
+
+.. image:: ./img/chapter3-1.png
+
+Width, Precision, and Thousands Separators
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+다음을 보자
+넓이는 정수로 다음처럼 표현된다.
+
+.. code-block:: python
+
+    >>> "{num:10}".format(num=3)
+    ' 3'
+    >>> "{name:10}".format(name="Bob")
+    'Bob '
+
+본것과 같이 숫자와 스트링은 약간 다르게 할당된다. 다음장에서 다시 한번 보도록 하자.
+프리시젼도 또한 정수로 표현할 수 있다.다음 예를 보도록 하자.
+
+.. code-block:: python
+
+    >>> "Pi day is {pi:.2f}".format(pi=pi)
+    'Pi day is 3.14'
+
+ width와 precision을 동시에 쓸 수도 있다.
+
+.. code-block:: python
+
+    >>> "{pi:10.2f}".format(pi=pi)
+    ' 3.14'
+다른 타입으로 precision을 사용할 수 있다. 이러한 것은 자주 쓰이지는 않는다.
+
+.. code-block:: python
+
+    >>> "{:.5}".format("Guido van Rossum")
+    'Guido'
+
+다음처럼 ,를 통해 표현할 수 있다.
+
+.. code-block:: python
+
+
+    >>> 'One googol is {:,}'.format(10**100)
+    'One googol is 10,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,00
+    0,000,000,000,000,000,000,000,000,000,000,000,000,000,000'
+
+이러한 ,는 width와 period indicating precision 사이에 존재해야 한다.
+
+Signs, Alignment, and Zero-Padding
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+다음처럼 zero-padding 할 수 있다.
+
+.. code-block:: python
+
+    >>> '{:010.2f}'.format(pi)
+    '0000003.14'
+
+다음처럼 <, >, and ^ 왼쪽 오픈쪽 가운데를 표시할 수 있다.
+
+.. code-block:: python
+
+    >>> print('{0:<10.2f}\n{0:^10.2f}\n{0:>10.2f}'.format(pi))
+    3.14
+        3.14
+            3.14
+
+스페이스 캐릭터 대신에 특정 문자를 표현하도록 할당 할 수 있다.
+
+.. code-block:: python
+
+    >>> "{:$^15}".format(" WIN BIG ")
+    '$$$ WIN BIG $$$'
+sign과 digit 사이에 어떤 문자를 채울 수 있는 = 도 있다.
+
+.. code-block:: python
+
+    >>> print('{0:10.2f}\n{1:10.2f}'.format(pi, -pi))
+    3.14
+    -3.14
+    >>> print('{0:10.2f}\n{1:=10.2f}'.format(pi, -pi))
+    3.14
+    - 3.14
 
 
 
