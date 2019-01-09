@@ -227,13 +227,127 @@ sign과 digit 사이에 어떤 문자를 채울 수 있는 = 도 있다.
     3.14
     - 3.14
 
+    >>> print('{0:-.2}\n{1:-.2}'.format(pi, -pi)) # Default
+    3.1
+    -3.1
+    >>> print('{0:+.2}\n{1:+.2}'.format(pi, -pi))
+    +3.1
+    -3.1
+    >>> print('{0: .2}\n{1: .2}'.format(pi, -pi))
+    3.1
+    -3.1
+
+마지막으로 # 옵션이다.(sign 과 width 옵션 사이)
+
+.. code-block:: python
+
+    >>> "{:b}".format(42)
+    '101010'
+    >>> "{:#b}".format(42)
+    '0b101010'
+
+    >>> "{:g}".format(42)
+    '42'
+    >>> "{:#g}".format(42)
+    '42.0000'
+
+다음 예제을 보자.
+Listing 3-1. String Formatting Example
+
+.. code-block:: python
+
+    # Print a formatted price list with a given width
+    width = int(input('Please enter width: '))
+    price_width = 10
+    item_width = width - price_width
+    header_fmt = '{{:{}}}{{:>{}}}'.format(item_width, price_width)
+    fmt = '{{:{}}}{{:>{}.2f}}'.format(item_width, price_width)
+    print('=' * width)
+    print(header_fmt.format('Item', 'Price'))
+    print('-' * width)
+    print(fmt.format('Apples', 0.4))
+    print(fmt.format('Pears', 0.5))
+    print(fmt.format('Cantaloupes', 1.92))
+    print(fmt.format('Dried Apricots (16 oz.)', 8))
+    print(fmt.format('Prunes (4 lbs.)', 12))
+    print('=' * width)
+
 
 
 
 3.4 String Methods
 -------------------
+string 메쏘드는 string 모듈에서 상속을 받았기때문에 좀더 많은 함수를 포함하고 있다.
+많은 string 함수들이 있지만 여기서는 몇가지 중요한 함수들만 정리하자.
+string 모듈은 string 함수에서 쓰이지 않은 몇가지 상수와 함수들이 있다.
+
+다음은 string으로부터 가능한 상수들이다.
+
+• string.digits: A string containing the digits 0–9
+• string.ascii_letters: A string containing all ASCII letters (uppercase and lowercase)
+• string.ascii_lowercase: A string containing all lowercase ASCII letters
+• string.printable: A string containing all printable ASCII characters
+• string.punctuation: A string containing all ASCII punctuation characters
+• string.ascii_uppercase: A string containing all uppercase ASCII letters
+
+center
+~~~~~~~~~~~~
+다음 예처럼 공란이나 기호를 넣어 처리할 수 있다.
+
+.. code-block:: python
+
+    >>> "The Middle by Jimmy Eat World".center(39)
+    ' The Middle by Jimmy Eat World '
+    >>> "The Middle by Jimmy Eat World".center(39, "*")
+    '*****The Middle by Jimmy Eat World*****'
 
 
+
+
+find
+~~~~~~~~~~~~
+커다란 string에서 하위 string을 찾아내는 함수이다.
+
+.. code-block:: python
+
+    >>> 'With a moo-moo here, and a moo-moo there'.find('moo')
+    7
+    >>> title = "Monty Python's Flying Circus"
+    >>> title.find('Monty')
+    0
+    >>> title.find('Python')
+    6
+    >>> title.find('Flying')
+    15
+    >>> title.find('Zirquss')
+    -1
+
+
+
+join
+~~~~~~~~~~~~
+
+lower
+~~~~~~~~~~~~
+
+
+replace
+~~~~~~~~~~~~
+
+
+split
+~~~~~~~~~~~~
+
+strip
+~~~~~~~~~~~~
+
+
+translate
+~~~~~~~~~~~~
+
+
+split
+~~~~~~~~~~~~
 
 
 3.5 A Quick Summary
