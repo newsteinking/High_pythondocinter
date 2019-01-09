@@ -321,36 +321,175 @@ find
     15
     >>> title.find('Zirquss')
     -1
+다음처럼 옵션을 넣어서 순서를 찾을 수 있다.
 
+.. code-block:: python
+
+    >>> subject = '$$$ Get rich now!!! $$$'
+    >>> subject.find('$$$')
+    0
+    >>> subject.find('$$$', 1) # Only supplying the start
+    20
+    >>> subject.find('!!!')
+    16
+
+시작과 끝을 지정할 수 있다.
+
+.. code-block:: python
+
+    >>> subject.find('!!!', 0, 16) # Supplying start and end
+    -1
 
 
 join
 ~~~~~~~~~~~~
 
+다음처럼 string  sequence에 대해 다음처럼 쓸 수 있다.
+
+ .. code-block:: python
+
+     >>> seq = [1, 2, 3, 4, 5]
+    >>> sep = '+'
+    >>> sep.join(seq) # Trying to join a list of numbers
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in ?
+    TypeError: sequence item 0: expected string, int found
+    >>> seq = ['1', '2', '3', '4', '5']
+    >>> sep.join(seq) # Joining a list of strings
+    '1+2+3+4+5'
+    >>> dirs = '', 'usr', 'bin', 'env'
+    >>> '/'.join(dirs)
+    '/usr/bin/env'
+    >>> print('C:' + '\\'.join(dirs))
+    C:\usr\bin\env
+
+
+
 lower
 ~~~~~~~~~~~~
+lower 함수는 string의 소문자로 리턴하는 것이다.
+
+ .. code-block:: python
+
+    >>> 'Trondheim Hammer Dance'.lower()
+    'trondheim hammer dance'
+
+다음처럼 하면 대소문자를 구분하지 못하여 찾지를 못한다.
+
+ .. code-block:: python
+
+    >>> if 'Gumby' in ['gumby', 'smith', 'jones']: print('Found it!')
+
+그래서 다음처럼 대소문자를 변경후 찾으면  된다.
+
+ .. code-block:: python
+
+    >>> name = 'Gumby'
+    >>> names = ['gumby', 'smith', 'jones']
+    >>> if name.lower() in names: print('Found it!')
+
+ 이와 반대로 title 함수는 첫글자는 대문자로 변환하는 함수이다.
+
+ .. code-block:: python
+
+    >>> "that's all folks".title()
+    "That'S All, Folks"
+
+또다른 방법으로 capword 가 있다.
+
+ .. code-block:: python
+
+    >>> import string
+    >>> string.capwords("that's all, folks")
+    That's All, Folks"
+
 
 
 replace
 ~~~~~~~~~~~~
+string에서 대체하는 함수이다.
+
+ .. code-block:: python
+
+    >>> 'This is a test'.replace('is', 'eez')
+    'Theez eez a test'
 
 
 split
 ~~~~~~~~~~~~
+join에 반대되는 함수이다.
+
+ .. code-block:: python
+
+    >>> '1+2+3+4+5'.split('+')
+    ['1', '2', '3', '4', '5']
+    >>> '/usr/bin/env'.split('/')
+    ['', 'usr', 'bin', 'env']
+    >>> 'Using the default'.split()
+    ['Using', 'the', 'default']
+
 
 strip
 ~~~~~~~~~~~~
+string 왼쪽,오른쪽 공백을 지우는 함수이다.
+
+ .. code-block:: python
+
+    >>> ' internal whitespace is kept '.strip()
+    'internal whitespace is kept'
+
+다음의 경우처럼 공백이 있는 string을 비교할때 공백을 빼고 처리하는 함수이다.
+
+ .. code-block:: python
+
+    >>> names = ['gumby', 'smith', 'jones']
+    >>> name = 'gumby '
+    >>> if name in names: print('Found it!')
+    ...
+    >>> if name.strip() in names: print('Found it!')
+    ...
+    Found it!
+    >>>
+
 
 
 translate
 ~~~~~~~~~~~~
+replace와 동일한 역할을 하지만 단일 문자에 대해서만 쓴다. 이런경우는 여려개의 대체를 할 경우에 유용하다.
+translate를 사용하기전에 translate table을 만들어야 한다.유니코드에 대한 변환될 정보가 들어 있다.
+maketrans 함수를 이용하여 이러한 translate table을 만들 수 있다.
+
+다음 예를 보자.
+
+ .. code-block:: python
 
 
-split
-~~~~~~~~~~~~
+    >>> table = str.maketrans('cs', 'kz')
+
+    >>> table
+    {115: 122, 99: 107}
+
+    >>> 'this is an incredible test'.translate(table)
+    'thiz iz an inkredible tezt'
+
+다음처럼 3번째 옵션을 넣어서 특정 문자를 지울 수 있다.
+
+
+ .. code-block:: python
+
+    >>> table = str.maketrans('cs', 'kz', ' ')
+    >>> 'this is an incredible test'.translate(table)
+    'thizizaninkredibletezt'
+
+
 
 
 3.5 A Quick Summary
 ------------------------
+이 장에서는 다음을 배웠다.
 
+String formatting
+
+
+String methods
 
