@@ -493,3 +493,10 @@ String formatting
 
 String methods
 
+New Function in this chapter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+string.capwords(s[, sep])
+
+ascii(obj)
+
