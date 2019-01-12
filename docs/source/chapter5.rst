@@ -216,14 +216,114 @@ data type 처리도 가능하다.
 5.3 Blocks:The Joy of Indentation
 ---------------------------------------
 블락은 구문의 일종은 아니다.다음 두장을 공부할때 필요한 부분이다.
-블락은 조건이 참값일경우에 또는 여러번 사용할 수 있는 구문의 집합이다
+블락은 조건이 참값일경우에 또는 여러번 사용할 수 있는 구문의 집합이다.
+
+다음 예처럼 구분되어져야 한다.
+
+.. code-block:: python
+
+    this is a line
+    this is another line:
+        this is another block
+        continuing the same block
+        the last line of this block
+    phew, there we escaped the inner block
+
+다른 언어에서는 {}를 종종 쓰지만 python에서는 :(콜론) 을 쓴다.
 
 
 
 5.4 Conditions and Conditional Statements
 --------------------------------------------
+지금까지는 순서대로 프로그램을 실행해 왔지만 여기서는 어떤 조건에 따라 실행되고 실행되지 않는 것을 알아보자.
+
+다음 값들은 boolean값으로 판단했을때 False로 판단한다.
+
+False None 0 "" () [] {}
+
+이것은 False가 None값을 가진다는 것이고 모든 변수값들에 0값을 가진다는 것이다. 그리고 빈 sequence( empty string,tuples,list) 가진다는 것이다.
+
+다음을 실행해 보자.
+
+.. code-block:: python
+
+    >>> True
+    True
+    >>> False
+    False
+    >>> True == 1
+    True
+    >>> False == 0
+    True
+    >>> True + False + 42
+    43
+
+    >>> bool('I think, therefore I am')
+    True
+    >>> bool(42)
+    True
+    >>> bool('')
+    False
+    >>> bool(0)
+    False
+
+Conditional Execution and the if Statement
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+다음을 실행해 보자.
+
+.. code-block:: python
+
+    name = input('What is your name? ')
+    if name.endswith('Gumby'):
+        print('Hello, Mr. Gumby')
+
+상기 표현은 조건이 맞을 경우에 이후 블락을 실행하라는 것이다.
+
+else Clauses
+~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    name = input('What is your name?')
+    if name.endswith('Gumby'):
+        print('Hello, Mr. Gumby')
+    else:
+        print('Hello, stranger')
+
+else문은 if 조건이 안 맞을 경우 else구문을 쓰라는 것이다.
+
+elif Clauses
+~~~~~~~~~~~~~~~
+여러 조건이 들어갈때 쓰인다.
+
+.. code-block:: python
+
+    num = int(input('Enter a number: '))
+    if num > 0:
+        print('The number is positive')
+    elif num < 0:
+        print('The number is negative')
+    else:
+        print('The number is zero')
+
+Nesting Blocks
+~~~~~~~~~~~~~~
+조건안에 또 조건이 들어가는 상황이다.
+
+.. code-block:: python
 
 
+    name = input('What is your name? ')
+    if name.endswith('Gumby'):
+        if name.startswith('Mr.'):
+            print('Hello, Mr. Gumby')
+        elif name.startswith('Mrs.'):
+            print('Hello, Mrs. Gumby')
+        else:
+            print('Hello, Gumby')
+    else:
+        print('Hello, stranger')
 
 
 5.5 Loops
