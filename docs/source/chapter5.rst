@@ -829,3 +829,5 @@ Assignments:
 Blocks:
 Conditionals:
 Assertions:
+
+.. image:: ./img/chapter5-2.png
