@@ -293,6 +293,106 @@ first,middle,last를 key로 하고 각각 값으로 사람의 리스트를 집�
     >>> foo
     [11]
 
+Keyword Parameters and Defaults
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+이제껏 사용했던 파라미터는 포지션 파라미터이고 이것은 파라미터 위치가 중요하기때문이다.
+
+.. code-block:: python
+
+    def hello_1(greeting, name):
+        print('{}, {}!'.format(greeting, name))
+    def hello_2(name, greeting):
+        print('{}, {}!'.format(name, greeting))
+
+    >>> hello_1('Hello', 'world')
+    Hello, world!
+    >>> hello_2('Hello', 'world')
+    Hello, world!
+두 결과값은 동일하다.
+
+.. code-block:: python
+
+    >>> hello_1(greeting='Hello', name='world')
+    Hello, world!
+
+    >>> hello_1(name='world', greeting='Hello')
+    Hello, world!
+
+이처럼 쓰이는 파라미터를 키워드 파라미터라고 한다. 키워드 파라미터의 힘은 각 파라미터글 구분할 수 있다는 것이다.
+이상한 파라미터 호출을 하는것을 피하기 위한 것이다.
+
+.. code-block:: python
+
+    >>> store('Mr. Brainsample', 10, 20, 13, 5)
+
+키워드 파라미터가 없다면 함수에서 디폴트 값으로 줄 수 있다.
+
+.. code-block:: python
+
+    def hello_3(greeting='Hello', name='world'):
+        print('{}, {}!'.format(greeting, name))
+
+    >>> hello_3()
+    Hello, world!
+    >>> hello_3('Greetings')
+    Greetings, world!
+    >>> hello_3('Greetings', 'universe')
+    Greetings, universe!
+
+    >>> hello_3(name='Gumby')
+    Hello, Gumby!
+
+
+다음 함수 예는 이름을 필요로 한다. 인사말과 기호 추가를 필요로 한다.
+
+.. code-block:: python
+
+    def hello_4(name, greeting='Hello', punctuation='!'):
+        print('{}, {}{}'.format(greeting, name, punctuation))
+
+    >>> hello_4('Mars')
+    Hello, Mars!
+    >>> hello_4('Mars', 'Howdy')
+    Howdy, Mars!
+    >>> hello_4('Mars', 'Howdy', '...')
+    Howdy, Mars...
+    >>> hello_4('Mars', punctuation='.')
+    Hello, Mars.
+    >>> hello_4('Mars', greeting='Top of the morning to ya')
+    Top of the morning to ya, Mars!
+    >>> hello_4()
+
+Collecting Parameters
+~~~~~~~~~~~~~~~~~~~~~~~
+다음 예를 보자.
+
+.. code-block:: python
+
+    def print_params(*params):
+        print(params)
+
+    >>> print_params('Testing')
+    ('Testing',)
+프린트 되는것을 보면 tuple 타입임을 알 수 있다.
+
+.. code-block:: python
+
+    def print_params_2(title, *params):
+        print(title)
+        print(params)
+
+    >>> print_params_2('Params:', 1, 2, 3)
+    Params:
+    (1, 2, 3)
+
+파리미터가 없으면 빈 tuple로 리턴한다.
+
+.. code-block:: python
+
+    >>> print_params_2('Nothing:')
+    Nothing:
+    ()
+
 
 
 6.5 Parameter Practice
