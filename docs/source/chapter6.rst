@@ -392,19 +392,218 @@ Collecting Parameters
     >>> print_params_2('Nothing:')
     Nothing:
     ()
+다음 예처럼 중간에 와도 된다.그렇지만 마지막 파라미터에 대해서는 지정을 해줘야 한다.
+
+.. code-block:: python
+
+    >>> def in_the_middle(x, *y, z):
+    ... print(x, y, z)
+    ...
+    >>> in_the_middle(1, 2, 3, 4, 5, z=7)
+    1 (2, 3, 4, 5) 7
+    >>> in_the_middle(1, 2, 3, 4, 5, 7)
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    TypeError: in_the_middle() missing 1 required keyword-only argument: 'z'
+
+스타는 키워드 전달자를 모으지 않는다.
+
+.. code-block:: python
+
+    >>> print_params_2('Hmm...', something=42)
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    TypeError: print_params_2() got an unexpected keyword argument 'something'
+
+별두개를 사용해서도 가능하다.
+
+.. code-block:: python
+
+    >>> def print_params_3(**params):
+    ... print(params)
+    ...
+    >>> print_params_3(x=1, y=2, z=3)
+    {'z': 3, 'x': 1, 'y': 2}
+
+다음 예에서처럼 tuple 구조보다는 dictionary 구조임을 알 수 있다.
+
+.. code-block:: python
+
+    def print_params_4(x, y, z=3, *pospar, **keypar):
+        print(x, y, z)
+        print(pospar)
+        print(keypar)
+
+    >>> print_params_4(1, 2, 3, 5, 6, 7, foo=1, bar=2)
+    1 2 3
+    (5, 6, 7)
+    {'foo': 1, 'bar': 2}
+    >>> print_params_4(1, 2)
+    1 2 3
+    ()
+    {}
+
+ 다음 예를 보자.
+
+.. code-block:: python
+
+    def store(data, *full_names):
+        for full_name in full_names:
+            names = full_name.split()
+            if len(names) == 2: names.insert(1, '')
+            labels = 'first', 'middle', 'last'
+            for label, name in zip(labels, names):
+                people = lookup(data, label, name)
+                if people:
+                    people.append(full_name)
+                else:
+                    data[label][name] = [full_name]
+
+    def init(data):
+        data['first'] = {}
+        data['middle'] = {}
+        data['last'] = {}
+
+    def lookup(data, label, name):
+        return data[label].get(name)
+
+    d={}
+    init(d)
+    store(d,'Han solo')
+
+ Reversing the Process
+~~~~~~~~~~~~~~~~~~~~~~~~
+tuples 와 dictionaries를 통해 파라미터값을 얻는것을 배웠다. 사실 반대로 가능하다.
+
+.. code-block:: python
+
+    def add(x, y):
+        return x + y
+
+다음처럼 두 수를 더하고자 tuple을 만들어 보자.
+params = (1, 2)
+
+이전에 했던것과 반대되는 개념이다.
+파라미터를 얻는대신 그것들을 늘어 놓았다.
+
+>>> add(*params)
+3
+
+dictionaries에도 마찬가지로 쓰일 수 있다
+
+.. code-block:: python
+
+    def hello_3(greeting='Hello', name='world'):
+        print('{}, {}!'.format(greeting, name))
 
 
+    >>> params = {'name': 'Sir Robin', 'greeting': 'Well met'}
+    >>> hello_3(**params)
+    Well met, Sir Robin!
+*,** 둘다 사용을 해서 함수를 호출할때 tuple 또는 dictionary를 넘길 수 있다.
+
+
+.. code-block:: python
+
+
+    >>> def with_stars(**kwds):
+    ... print(kwds['name'], 'is', kwds['age'], 'years old')
+    ...
+    >>> def without_stars(kwds):
+    ... print(kwds['name'], 'is', kwds['age'], 'years old')
+    ...
+    >>> args = {'name': 'Mr. Gumby', 'age': 42}
+    >>> with_stars(**args)
+    Mr. Gumby is 42 years old
+    >>> without_stars(args)
+    Mr. Gumby is 42 years old
 
 6.5 Parameter Practice
 -----------------------------
+많은 파라미터들이 전달되므로 혼란스러울 수 있다. 다음 예를 보자.
+
+.. code-block:: python
+
+    def story(**kwds):
+        return 'Once upon a time, there was a ' \
+            '{job} called {name}.'.format_map(kwds)
+    def power(x, y, *others):
+        if others:
+            print('Received redundant parameters:', others)
+        return pow(x, y)
+
+    def interval(start, stop=None, step=1):
+        'Imitates range() for step > 0'
+        if stop is None: # If the stop is not supplied ...
+            start, stop = 0, start # shuffle the parameters
+        result = []
+        i = start # We start counting at the start index
+        while i < stop: # Until the index reaches the stop index ...
+            result.append(i) # ... append the index to the result ...
+            i += step # ... increment the index with the step (> 0)
+        return result
 
 
+    >>> print(story(job='king', name='Gumby'))
+    Once upon a time, there was a king called Gumby.
+    >>> print(story(name='Sir Robin', job='brave knight'))
+    Once upon a time, there was a brave knight called Sir Robin.
+    >>> params = {'job': 'language', 'name': 'Python'}
+    >>> print(story(**params))
+    Once upon a time, there was a language called Python.
+    >>> del params['job']
+    >>> print(story(job='stroke of genius', **params))
+    Once upon a time, there was a stroke of genius called Python.
+    >>> power(2, 3)
+    8
+    >>> power(3, 2)
+    9
+    >>> power(y=3, x=2)
+    8
+    >>> params = (5,) * 2
+    >>> power(*params)
+    3125
+    >>> power(3, 3, 'Hello, world')
+    Received redundant parameters: ('Hello, world',)
 
+    >>> interval(10)
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>> interval(1, 5)
+    [1, 2, 3, 4]
+    >>> interval(3, 12, 4)
+    [3, 7, 11]
+    >>> power(*interval(3, 7))
+    Received redundant parameters: (5, 6)
+    81
 
 
 6.6 Scoping
 -----------------------------
+다음 예를 보자.
 
+.. code-block:: python
+
+    >>> x = 1
+    >>> scope = vars()
+    >>> scope['x']
+    1
+    >>> scope['x'] += 1
+    >>> x
+    2
+
+보이지 않은 dictionary를 namespace,scope라고 한다.
+글로벌 scope와 더블어 각 함수는 새로운 것을 생성한다.
+
+.. code-block:: python
+
+    >>> def foo(): x = 42
+    ...
+    >>> x = 1
+    >>> foo()
+    >>> x
+    1
+
+함수를 호출하면서 새로운 namespace를 생성하기때문에 foo안에 블락으로 사용되어진다.
 
 
 
@@ -412,23 +611,109 @@ Collecting Parameters
 
 6.7 Recursion
 -----------------------------
+함수를 만들고 호출하는것을 배웠다.
+함수는 다른 함수를 호출한다. 놀라운것은 자기 자신을 호출하는 경우이다.
+이러한 것들을 만나지 않았다면 recursion이 무엇인가 의아해 할것이다.
+다음은 형식이다.
+
+.. code-block:: python
+
+    def recursion():
+    return recursion()
+
+Two Classics: Factorial and Power
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+다음 예를 보자.
+
+.. code-block:: python
 
 
+    def factorial(n):
+        result = n
+        for i in range(1, n):
+            result *= i
+        return result
+이것을 다음처럼 바꿀수 있다.
+n=1 인경우는 1값을 리턴하고
+그렇지 않은 경우는 f(n)*factorial(n-1)이 된다.
+
+.. code-block:: python
+
+    def factorial(n):
+        if n == 1:
+            return 1
+        else:
+            return n * factorial(n - 1)
+또 다른 예를 보자.
+pow,**를 계산하는것처럼 파워를 계산한다고 하자.
+몇가지 방법으로 파워를 정의할 수 있다. pow(x,n)은 x를 n-1만큼 곱한것이다. pow(2,3)은 2X2X2=8 이 된다.
+
+.. code-block:: python
+
+    def power(x, n):
+        result = 1
+        for i in range(n):
+            result *= x
+        return result
+똑같이 다음처럼 변경이 가능하다.
+
+.. code-block:: python
+
+    def power(x, n):
+        if n == 0:
+            return 1
+        else:
+            return x * power(x, n - 1)
 
 
 
 6.8 Another Classi:Binary Search
 ------------------------------------
+스무고개에 대한 게임을 알것이다. 임의의 숫자를 맞추기 위해서 좁혀가야 한다.
+반을 쪼개서 그 윗수인가 아닌가? 등등...
+이런것들은 전통적으로 반복적 알고리즘에 속한다.
+반복적인 경우에 중요한 것은 숫자가 저장이 된다는 것이다.
+다음 예는 binary search의 예이다.
 
+.. code-block:: python
+
+    def search(sequence, number, lower, upper):
+        if lower == upper:
+            assert number == sequence[upper]
+            return upper
+        else:
+            middle = (lower + upper) // 2
+            if number > sequence[middle]:
+                return search(sequence, number, middle + 1, upper)
+            else:
+                return search(sequence, number, lower, middle)
+
+
+    >>> seq = [34, 67, 8, 123, 4, 100, 95]
+    >>> seq.sort()
+    >>> seq
+    [4, 8, 34, 67, 95, 100, 123]
+    >>> search(seq, 34)
+    2
+    >>> search(seq, 100)
+    5
 
 
 6.9 A Quick Summary
 ------------------------------------
-
+Abstraction:
+Function definition:
+Parameters:
+Scopes:
+Recursion:
+Functional programming:
 
 
 6.10 New Functions in This Chapter
 ------------------------------------
+
+.. image:: ./img/chapter6-1.png
+
 
 6.11 What Now?
 ------------------------------------
