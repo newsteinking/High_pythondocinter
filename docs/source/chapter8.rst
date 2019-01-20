@@ -191,8 +191,58 @@ A Real Catchall
 
 When All Is Well
 ~~~~~~~~~~~~~~~~~~~
+다음처럼 오류처리를 하고 다음에 else 처리로 가능하다.
 
+.. code-block:: python
 
+    try:
+        print('A simple task')
+    except:
+        print('What? Something went wrong?')
+    else:
+        print('Ah ... It went as planned.')
+
+이렇게 되면 이전에 배웠던 중복 exception을 다음처럼 처리할 수 있다.
+
+.. code-block:: python
+
+    while True:
+        try:
+            x = int(input('Enter the first number: '))
+            y = int(input('Enter the second number: '))
+            value = x / y
+            print('x / y is', value)
+        except:
+            print('Invalid input. Please try again.')
+        else:
+            break
+
+And Finally
+~~~~~~~~~~~~~~
+마지막으로 finally 구문을 소개하도록 하겠다.
+try 구문과 같이 어떤 에러가 나는지 상관없이 처리를 종료할때 쓰인다.
+
+.. code-block:: python
+
+    x = None
+    try:
+        x = 1 / 0
+    finally:
+        print('Cleaning up ...')
+        del x
+
+다음 구문처럼 여러개를 혼용해서 써도 유용할때가 있다.
+
+.. code-block:: python
+
+    try:
+        1 / 0
+    except NameError:
+        print("Unknown variable")
+    else:
+        print("That went well!")
+    finally:
+        print("Cleaning up.")
 
 
 8.4 Exceptions and Functions
