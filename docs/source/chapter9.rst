@@ -125,6 +125,14 @@ SongBrid는 Bird의 하위 클래스이다.그래서 eat method를 상속받는�
 constructor가 override 되면 hungry atrribute를 초기화 하는 코드가 포함되지 않는다.
 
 
+Calling the Unbound Superclass Constructor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+이 장에서 얘기하는것은 이야기기 이어질 것이다.
+현재 버젼에서 super 함수를 사용한다는 것은 명확히 길이 있다.
+이전 내용에서 super class의 constructor를 호출하는 것은 매우 쉽다. 앞에서 언급했던 초기화 문제에 대해서 답을 주고자 한다.
+
+
+
 
 
 
