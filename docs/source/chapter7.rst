@@ -307,3 +307,9 @@ object-oriented design. No matter where you stand on the issue, it’s important
 to understand your problem thoroughly and to create a design that is easy to
 understand.
 
+New Functions
+~~~~~~~~~~~~~~~~~~
+
+
+.. image:: ./img/chapter7-1.png
+
