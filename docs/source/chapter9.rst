@@ -131,27 +131,321 @@ Calling the Unbound Superclass Constructor
 현재 버젼에서 super 함수를 사용한다는 것은 명확히 길이 있다.
 이전 내용에서 super class의 constructor를 호출하는 것은 매우 쉽다. 앞에서 언급했던 초기화 문제에 대해서 답을 주고자 한다.
 
+.. code-block:: python
+
+    class Bird():
+        def __init__(self):
+            self.Hungry=True
+        def eat(self):
+            if self.Hungry==True:
+                print('Aahh.....')
+                self.Hungry=False
+            else:
+                print('No Thanks')
+
+    class SongBird(Bird):
+        def __init__(self):
+            super().__init__()   ## super init add
+            self.sound='Squawk'
+        def sing(self):
+            print(self.sound)
+
+    b=Bird()
+    b.eat()
+
+    b.eat()
 
 
-
+    sb=SongBird()
+    sb.sing()
+    sb.eat()
 
 
 9.3 Item Access
 -------------------
+__init__ method는 당신이 만나게 될 가장 중요한 것이다.다른것들은 다양한 많은 것들을 당신이 할 수 있도록 도와준다.
 
+The Basic Sequence and Mapping Protocol
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+sequences 나 mappings는 기본적으로 items들에 대한 조합이다. 기본적으로 기본동작(프로토콜)을 구현하기 위하여
+immutalbe  오브젝트는 두가지, mutalbe 오브젝트라고 하면 4가지의 중요한 method를 배우게 될것이다.
+
+__len__(self):
+~~~~~~~~~~~~~~~~~
+이 method는 collection에 들어있는 item 갯수를 리턴한다.
+
+
+__getitem__(self, key):
+~~~~~~~~~~~~~~~~~~~~~~~~~
+이 method는 주어진 key값에 대해 값을 리턴한다.
+
+
+__setitem__(self, key, value)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+이 method는 주어진 key,value값을 저장한다.
+
+
+__delitem__(self, key):
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+이 method는 key에 해당하는 item을 지우기 위해 사용된다.
+
+몇가지 추가적인 내용이 있다.
+- sequence의 -값은 뒤쪽부터 셀때 사용되어 진다.
+- key가 부정확한 type이라면  TypeError 가 뜨게된다.
+- sequence가 올바른 타입이고 허락된 범위밖에 있다면 IndexError가 뜨게 된다.
+
+다음 예를 보자.
+
+.. code-block:: python
+
+    def check_index(key):
+        """
+        Is the given key an acceptable index?
+        To be acceptable, the key should be a non-negative integer. If it
+        is not an integer, a TypeError is raised; if it is negative, an
+        IndexError is raised (since the sequence is of infinite length).
+        """
+        if not isinstance(key, int): raise TypeError
+        if key < 0: raise IndexError
+
+    class ArithmeticSequence:
+        def __init__(self, start=0, step=1):
+            """
+            Initialize the arithmetic sequence.
+            start - the first value in the sequence
+            step - the difference between two adjacent values
+            changed - a dictionary of values that have been modified by
+            the user
+            """
+            self.start = start # Store the start value
+            self.step = step # Store the step value
+            self.changed = {} # No items have been modified
+        def __getitem__(self, key):
+            """
+            Get an item from the arithmetic sequence.
+            """
+            check_index(key)
+            try: return self.changed[key] # Modified?
+            except KeyError: # otherwise ...
+                return self.start + key * self.step # ... calculate the value
+
+        def __setitem__(self, key, value):
+            """
+            Change an item in the arithmetic sequence.
+            """
+            check_index(key)
+            self.changed[key] = value # Store the changed value
+
+
+    s=ArithmeticSequence(1,2)
+    print(s[4])
+    s[4] = 2
+    print(s[4])
+
+    print(s[5])
+
+다음처럼 하면 잘못된 표현이다.
+
+.. code-block:: python
+
+    >>> del s[4]
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in ?
+    AttributeError: ArithmeticSequence instance has no attribute '__delitem__'
+
+그리고 무한대의 sequence값을 가지기때문에 __len__ method가 없다.
+다음처럼 하면 TypeError 또는 IndexError 가 나온다.
+
+.. code-block:: python
+
+    >>> s["four"]
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in ?
+    File "arithseq.py", line 31, in __getitem__
+    check_index(key)
+    File "arithseq.py", line 10, in checkIndex
+    if not isinstance(key, int): raise TypeError
+    TypeError
+    >>> s[-42]
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in ?
+    File "arithseq.py", line 31, in __getitem__
+    check_index(key)
+    File "arithseq.py", line 11, in checkIndex
+    if key < 0: raise IndexError
+    IndexError
+
+Subclassing list, dict, and str
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+sequence에는 위에서 언급한 method외에 여러가지가 있다. __iter__ method가 대표적이다.
+또다른 키워드는 inheritance이다.
+
+.. code-block:: python
+
+    class CounterList(list):
+        def __init__(self, *args):
+            super().__init__(*args)
+            self.counter = 0
+        def __getitem__(self, index):
+            self.counter += 1
+            return super(CounterList, self).__getitem__(index)
+
+    cl = CounterList(range(10))
+    print(cl)
+    print(cl.reverse())
+    del cl[3:6]
+    print(cl)
+    print(cl.counter)
+    print(cl[4] + cl[2])
+    print(cl.counter)
 
 
 
 9.4 More Magic
 -------------------
-
+특별한 이름이 많은 목적을 위해 존재한다.
 
 9.5 Properties
 -------------------
+7장에서 accessor method를 배웠다. Accessors들은 getHeight,setHeight등을 말하며 그 특성값들을 알아내기 위해서 사용된다.
+이것과 같은 캡슐화된 값은 어떤 행동들이 취해질때 중요하다.
+다음 예제를 보자.
+
+.. code-block:: python
+
+    class Rectangle:
+        def __init__(self):
+            self.width = 0
+            self.height = 0
+        def set_size(self, size):
+            self.width, self.height = size
+        def get_size(self):
+            return self.width, self.height
+
+    r = Rectangle()
+    r.width = 10
+    r.height = 5
+    print(r.get_size())
+
+    r.set_size((150, 100))
+    print(r.width)
+    print(r.height)
+    print(r.get_size())
+
+The property Function
+~~~~~~~~~~~~~~~~~~~~~~
+상기에서 추가 1라인만 해보자.
+
+.. code-block:: python
+
+    class Rectangle:
+        def __init__(self):
+            self.width = 0
+            self.height = 0
+        def set_size(self, size):
+            self.width, self.height = size
+        def get_size(self):
+            return self.width, self.height
+        size=property(get_size,set_size)
+
+    r = Rectangle()
+    r.width = 10
+    r.height = 5
+    print(r.size)
+    r.size = 150, 100
+    print(r.width)
+
+Static Methods and Class Methods
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+잠깐 새로운 classmethod staticmethod 를 사용하여 class method와 static method를 wrapping 하는 방법을 알아보자.
+static method는 self 전달자 없이 사용된다.class 자체를 호출하도록 사용한다.
+class method는 cls라는 seif 형태의 파라미터로 정의되어진다.
+class object에서 바로 class method를 호출할 수 있다. cls 파라미터는 자동으로 class에 묶인다.
+예를 보자.
+
+.. code-block:: python
+
+    class MyClass:
+        def smeth():
+            print('This is a static method')
+        smeth = staticmethod(smeth)
+        def cmeth(cls):
+            print('This is a class method of', cls)
+        cmeth = classmethod(cmeth)
+
+    mc=MyClass()
+    mc.cmeth()
+    mc.smeth()
+
+
+    ## python 2.7
+    class MyClass2:
+        @staticmethod
+        def smeth():
+            print('This is a static method')
+        @classmethod
+        def cmeth(cls):
+            print('This is a class method of', cls)
+
+
+    MyClass2.smeth()
+    MyClass2.cmeth()
+
+__getattr__, __setattr__, and Friends
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+object을 억세스하여 모든 attribute를 가로채는것이 가능하다.
+이전 스타일로 properties를 구현하기 위하여 이것을 사용할 수 있다.
+attribute를 접근할때 코드가 실행되도록 하기 위하여,두개의 매직 method를 사용해야 한다.
+
+__getattribute__(self, name):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Automatically called when the attribute name is
+accessed. (This works correctly on new-style classes only.)
+
+__getattr__(self, name):
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Automatically called when the attribute name is
+accessed and the object has no such attribute.
+
+__setattr__(self, name, value):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Automatically called when an attempt is
+made to bind the attribute name to value.
+
+__delattr__(self, name):
+~~~~~~~~~~~~~~~~~~~~~~~~~
+ Automatically called when an attempt is made to
+delete the attribute name.
+
+property를 사용하는것보다 좀 더 장난스럽지만 이러한 methods들은 강력하다. 왜냐하면 몇가지 property를 다루는 method들중에 하나로
+코딩되어 있기때문이다.
+
+.. code-block:: python
+
+    class Rectangle:
+        def __init__ (self):
+            self.width = 0
+            self.height = 0
+        def __setattr__(self, name, value):
+            if name == 'size':
+                self.width, self.height = value
+            else:
+                self. __dict__[name] = value
+        def __getattr__(self, name):
+            if name == 'size':
+                return self.width, self.height
+            else:
+                raise AttributeError()
+
+    rt=Rectangle()
+    rt.__setattr__('size', (2,3))
+    print(rt.__getattr__('size'))
 
 
 9.6 Iterators
 -------------------
+__iter__에 대해서 좀 더 자세히 알아보자.
+
 
 
 
