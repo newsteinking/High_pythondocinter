@@ -445,13 +445,127 @@ property를 사용하는것보다 좀 더 장난스럽지만 이러한 methods�
 9.6 Iterators
 -------------------
 __iter__에 대해서 좀 더 자세히 알아보자.
+어떤 것을 여러번 반복하는 것을 의미한다.루프로 했던 것들이다. 지금까지 for loops로 sequences,dictionaries에 대해서만
+반복했다.
+그러나 다른 object에 대해서도 또한 __iter__를 이용하여 가능하다.
+__iter__ method는 iterator를 반환한다.어떤 전달자 없이도 가능한  __next__라고 불리우는 method들이다.
+__next__ method를 호출했을때 iterator 는 다음값을 리턴해야 한다.
+method가 호출되고 더이상 return할 iterator가 없으면 StopIteration exception을 띄워야 한다.
+build-in 함수인 next(it) 는 __next__() 와 동일하다.
+여기서 잠깐 우리는 왜 list를 사용할까? 만약 순서대로 어떤 함수를 계산하는 함수가 있다면 당신은 순서대로 그것들을 필요로 할것이다.
+만약 값이 크다면 그 리스트는 많은 메모리를 점유하게 될것이다.
+다음 피보나치 수열에 대한 예제을 보자.
 
+.. code-block:: python
+
+    class Fibs:
+        def __init__(self):
+            self.a = 0
+            self.b = 1
+        def __next__(self):
+            self.a, self.b = self.b, self.a + self.b
+            return self.a
+        def __iter__(self):
+            return self
+
+    fibs = Fibs()
+
+    for f in fibs:
+        if f > 1000:
+            print(f)
+            break
+
+    # build-in next
+    it = iter([1, 2, 3])
+    print(next(it))
+    print(next(it))
+
+iterator,iterables에 대한 iterating에 추가적으로 그것들을 sequence로 변환할 수 있다.
+sequence를 사용하는 모든 context에서 iterator를 대신 사용할 수 있다.
+다음 예제는 list contructor를 사용해서 iterator를 list로 만들었다.
+
+.. code-block:: python
+
+    class TestIterator:
+        value = 0
+        def __next__(self):
+            self.value += 1
+            if self.value > 10: raise StopIteration
+            return self.value
+        def __iter__(self):
+            return self
+
+    ti = TestIterator()
+    print(list(ti))
 
 
 
 9.7 Generators
 -------------------
+역사적 이력이 있어서 simple generator라고 불리우는 Generators는 상대적으로 파이썬에서 새로운 것이다.
+수년동안 가장 강력한 특징중에 하나이다.
+오히려 generator라는 컨셉은 진보된것이다.
+generator는 일반 함수에서 정의되어진 iterator 종류의 하나이다.
+예제를 통해 자세히 알아보자.
 
+Making a Generator
+~~~~~~~~~~~~~~~~~~~
+generator를 만드는 것은 간단하다. 함수를 만드는것과 같다.
+예를 보자.
+
+.. code-block:: python
+
+    nested = [[1, 2], [3, 4], [5]]
+
+    def flatten(nested):
+        for sublist in nested:
+            for element in sublist:
+                yield element
+
+    for num in flatten(nested):
+        print(num)
+
+    print(list(flatten(nested)))
+
+A Recursive Generator
+~~~~~~~~~~~~~~~~~~~~~~
+이전에 nested loop로 2 level을 다루었다.더 심도있는 레벨을 다루기 위해서는 tree구조를 다루어야 할것이다.
+다음처럼 level이 있는 경우 처리하고 없는경우 오류 처리를 하는 방법도 있다.
+
+.. code-block:: python
+
+    def flatten(nested):
+        try:
+            for sublist in nested:
+                for element in flatten(sublist):
+                    yield element
+        except TypeError:
+            yield nested
+
+    print(list(flatten([[[1], 2], 3, 4, [5, [6, 7]], 8])))
+
+이것을 다루기 위해서 generator 앞쪽에 test를 추가해야 한다.
+다음 예를 보자.
+
+.. code-block:: python
+
+    def flatten(nested):
+        try:
+    # Don't iterate over string-like objects:
+            try: nested + ''
+            except TypeError: pass
+            else: raise TypeError
+            for sublist in nested:
+                for element in flatten(sublist):
+                    yield element
+        except TypeError:
+            yield nested
+
+    print(list(flatten(['foo', ['bar', ['baz']]])))
+
+Generators in General
+~~~~~~~~~~~~~~~~~~~~~~~
+예제를 통해 generator 사용법을 배웠다. 
 
 
 9.8 The Eight Queens
