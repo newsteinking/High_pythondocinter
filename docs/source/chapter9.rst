@@ -565,15 +565,129 @@ A Recursive Generator
 
 Generators in General
 ~~~~~~~~~~~~~~~~~~~~~~~
-예제를 통해 generator 사용법을 배웠다. 
+예제를 통해 generator 사용법을 배웠다. generator는 yield라는 키워드를 포함한  함수라른 것을 봤다.
+이것이 호출되면 함수 바디안에 있는 코드는 실행되지 않는다. 대신 iterator가 리턴된다.
+매번 value값이 요구되면 generator안에 있는 코드는 yield 또는 return을 만날때까지 실행되어 진다.
+yield라는 것은 value값이 나와야 한다는 것을 의미한다.
+return은 generator가 실행을 멈추어야 한다는 것을 의미한다.
+다른말로 한다면,generator는 2가지 generator-function 과 generator-iterator 로 구성되어진다.
+generator function은 yield를 포함한 def 구문에 의해서 정의되어지는 것이다.
+generator iterator는 함수가 리턴되는 것이다.
+
+.. code-block:: python
+
+    >>> def simple_generator():
+    yield 1
+    ...
+    >>> simple_generator
+    <function simple_generator at 153b44>
+    >>> simple_generator()
+    <generator object at 1510b0>
+
+Generator Methods
+~~~~~~~~~~~~~~~~~~
+generator 와 다른것이랑 사이의 커뮤니케이션 채널을 사용함으로써 시작한 후에 generator 제공할 지도 모르겠다.
+
+-send
+-yield
+
+다음 예를 보자.
+
+.. code-block:: python
+
+    def repeater(value):
+        while True:
+            new = (yield value)
+            if new is not None: value = new
+
+    >>> r = repeater(42)
+    >>> next(r)
+    42
+    >>> r.send("Hello, world!")
+    "Hello, world!"
+
+generator는 또한 다음 두가지 method를 제공한다.
+
+-throw : generator안에 exception을 처리할 때 쓰임
+-close : generator를 그만두고자 할때 쓰임
+
+Simulating Generators
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+다음 예를 보자.
+
+.. code-block:: python
+
+    def flatten(nested):
+        result = []
+        try:
+            # Don't iterate over string-like objects:
+            try: nested + ''
+            except TypeError: pass
+            else: raise TypeError
+            for sublist in nested:
+                for element in flatten(sublist):
+                    result.append(element)
+        except TypeError:
+            result.append(nested)
+        return result
+
 
 
 9.8 The Eight Queens
 ----------------------
+여기서는 보통의 프로그램 문제를 해결하기 위하여 generator를 사용하는것을 알아보도록 하겠다.
+
+Generators and Backtracking
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+generator는 점진적 결과물을 만드는 복잡한 반복적인 알고리즘에 이상적이다.
+generator가 없다면 이러한 알고리즘은 반복적 호출을 할 수 있도록 추가적 파라미터로서 솔루션일 필요할 것이다.
 
 
+The Problem
+~~~~~~~~~~~~~~
+skip
+
+State Representation
+~~~~~~~~~~~~~~~~~~~~~
+skip
+
+Finding Conflicts
+~~~~~~~~~~~~~~~~~~
+skip
+
+The Base Case
+~~~~~~~~~~~~~~~
+skip
+
+The Recursive Case
+~~~~~~~~~~~~~~~~~~~~
+skip
+
+Wrapping It Up
+~~~~~~~~~~~~~~~~
+skip
 
 9.9 A Quick Summary
 -------------------
 
+New-style versus old-style classes:
+
+Magic methods:
+
+Constructors:
+
+Overriding:
+
+Sequences and mappings:
+
+Iterators:
+
+Generators:
+
+Eight Queens:
+
+New Functions
+~~~~~~~~~~~~~~~
+
+.. image:: ./img/chapter9-1.png
 
