@@ -306,6 +306,432 @@ fileinput에 대해서 자세히 알아보자.
     $ python numberlines.py numberlines.py
 
 
+Sets, Heaps, and Deques
+~~~~~~~~~~~~~~~~~~~~~~~~
+파이썬에는 유용한 data 구조들이 많다.
+
+sets
+~~~~~
+오래전에 sets는 sets 모듈에 Set class로 구현되어졌다.
+set은 build-in class로 import 할 필요가 없다.
+
+.. code-block:: python
+
+    >>> set(range(10))
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+    >>> type({})
+    <class 'dict'>
+
+
+.. code-block:: python
+
+
+    >>> {0, 1, 2, 3, 0, 1, 2, 3, 4, 5}
+    {0, 1, 2, 3, 4, 5}
+
+전달자 없이 set을 호출할 필요가 있다.중요 사용법은 멤버쉽을 결정하는것이다. 그래서 중복은 무시된다.
+dictionaries와 같이 element set의 순서는 매우 임의적이다.그리고 의존적이지 말아야 한다.
+
+.. code-block:: python
+
+    >>> {'fee', 'fie', 'foe'}
+    {'foe', 'fee', 'fie'}
+
+멤버쉽을 체크하는것과 더불어 union 이나 intersection 등의 다양한 표준 동작들을 할 수 있다.
+다음 예를 보자.
+
+.. code-block:: python
+
+    >>> a = {1, 2, 3}
+    >>> b = {2, 3, 4}
+    >>> a.union(b)
+    {1, 2, 3, 4}
+    >>> a | b
+    {1, 2, 3, 4}
+
+다음 예를 보자.
+
+.. code-block:: python
+
+    a = {1, 2, 3}
+    b = {2, 3, 4}
+    print(a.union(b))
+    print(a|b)
+
+    c=a&b
+    print(c)
+    print(c.issubset(a))
+    print(c.issuperset(a))
+
+    print(c>=a)
+
+    print(a.intersection(b))
+
+    print(a & b)
+
+    print(a.difference(b))
+
+    print(a - b)
+
+    print(a.symmetric_difference(b))
+
+    print(a ^ b)
+
+    print(a.copy())
+
+    print(a.copy() is a)
+
+sets은 mutable이기때문에 dictionary 에서 key처럼 쓰이지 않을지도 모르겠다.
+또다른 문제는 sets 자체로는 유일한 immutable 값을 가지기때문에 다른 sets 값을 포함하지 않을 지 모르겠다.
+sets of sets 가 종종 쓰이기때문에 이것은 문제가 된다. immutable sets를 표현하는 frozenset type도 있다.
+예를 보자.
+
+.. code-block:: python
+
+    >>> a = set()
+    >>> b = set()
+    >>> a.add(b)
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in ?
+    TypeError: set objects are unhashable
+    >>> a.add(frozenset(b))
+
+Heaps
+~~~~~~~~~~
+또다른 잘 알려진 data 구조는 heap이다.  큐 우선권과 같은 것이다.
+우선권 queue 는 object를 임의의 순서로 추가한다.그리고 언제라도 가장 작은 element를 찾는다.
+이것은 list에서 min을 사용하는 것보다 쉽다.
+사실 파이썬에는 구분되는 heap type이 없다. 유일하게 heap-manuplating function만 존재한다.
+이러한 모듈을 heapq 라고 불리우고 여섯개의 함수를 포함한다.
+다음예를 보자.
+
+.. code-block:: python
+
+    from heapq import *
+    from random import shuffle
+    data = list(range(10))
+    shuffle(data)
+    heap = []
+    for n in data:
+        heappush(heap, n)
+
+    print(heap)
+
+    print(heappush(heap, 0.5))
+    print(heap)
+
+    print(heappop(heap))
+
+    print(heappop(heap))
+
+    print(heappop(heap))
+
+    print(heap)
+
+
+다음 예처럼 heappop은 가장 작은 element부터 나오게 된다.
+
+heapify 함수는 임의의 리스트를 취하고 최소한의 suffle을 통해 legal heap로 만든다.
+heappush 와 heappop 사용하기 시작하기 전에 사용한다.
+
+.. code-block:: python
+
+    ###heapify
+
+    heap = [5, 8, 0, 3, 6, 7, 9, 1, 4, 2]
+    heapify(heap)
+    print(heap)
+
+    heapify(heap)
+    print(heap)
+
+    ##heapreplace
+    heapreplace(heap, 0.5)
+    print(heap)
+    heapreplace(heap, 10)
+
+    print(heap)
+
+heapq 모듈의 나머지 함수는 nlargest(n,iter) , nsmallist(n,iter) n largest or smallest element들이다.
+
+Deques (and Other Collections)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+다음 예를 보자.
+
+.. code-block:: python
+
+    from collections import deque
+    q = deque(range(5))
+    q.append(5)
+    q.appendleft(6)
+    print(q)
+    deque([6, 0, 1, 2, 3, 4, 5])
+    print(q.pop())
+
+    print(q.popleft())
+
+    q.rotate(3)
+    print(q)
+
+    q.rotate(-1)
+    print(q)
+
+time
+~~~~~~~
+time 모듈은 다음과 같은 함수를 포함한다.
+
+.. image:: ./img/chapter10-6.png
+
+.. code-block:: python
+
+    >>> time.asctime()
+    'Mon Jul 18 14:06:07 2016'
+
+random
+~~~~~~~~~~
+random 모듈은 랜덤 숫자를 리턴하는 함수들을 포함한다.
+시뮬레이션이나 랜덤 아웃풋을 만드는 프로그램에 유용하다.
+
+.. image:: ./img/chapter10-7.png
+
+다음 예를 보자.
+
+
+.. code-block:: python
+
+
+    from random import *
+    from time import *
+    date1 = (2016, 1, 1, 0, 0, 0, -1, -1, -1)
+    time1 = mktime(date1)
+    date2 = (2017, 1, 1, 0, 0, 0, -1, -1, -1)
+    time2 = mktime(date2)
+
+    random_time = uniform(time1, time2)
+    print(asctime(localtime(random_time)))
+
+주사위 던지기 메카니즘은 randrange 와 for loop로 만들어 진다.
+
+.. code-block:: python
+
+    from random import randrange
+    num = int(input('How many dice? '))
+    sides = int(input('How many sides per die? '))
+    sum = 0
+    for i in range(num): sum += randrange(sides) + 1
+    print('The result is', sum)
+
+shelve and json
+~~~~~~~~~~~~~~~~
+skip
+
+A Potential Trap
+~~~~~~~~~~~~~~~~~~
+shelve.open으로 리턴되는 object는 일상의 mapping이 아니라는 것을 아는것이 중요하다.
+
+다음 예를 보자.
+
+.. code-block:: python
+
+    # database.py
+    import sys, shelve
+
+    def store_person(db):
+        """
+        Query user for data and store it in the shelf object
+        """
+        pid = input('Enter unique ID number: ')
+        person = {}
+        person['name'] = input('Enter name: ')
+        person['age'] = input('Enter age: ')
+        person['phone'] = input('Enter phone number: ')
+        db[pid] = person
+
+    def lookup_person(db):
+        """
+        Query user for ID and desired field, and fetch the corresponding data from
+        the shelf object
+        """
+        pid = input('Enter ID number: ')
+        field = input('What would you like to know? (name, age, phone) ')
+        field = field.strip().lower()
+
+        print(field.capitalize() + ':', db[pid][field])
+
+    def print_help():
+        print('The available commands are:')
+        print('store  : Stores information about a person')
+        print('lookup : Looks up a person from ID number')
+        print('quit   : Save changes and exit')
+        print('?      : Prints this message')
+
+    def enter_command():
+        cmd = input('Enter command (? for help): ')
+        cmd = cmd.strip().lower()
+        return cmd
+
+    def main():
+        database = shelve.open('C:\\database.dat') # You may want to change this name
+        try:
+            while True:
+                cmd = enter_command()
+                if  cmd == 'store':
+                    store_person(database)
+                elif cmd == 'lookup':
+                    lookup_person(database)
+                elif cmd == '?':
+                    print_help()
+                elif cmd == 'quit':
+                    return
+        finally:
+            database.close()
+
+    if name == '__main__': main()
+
+
+What Is a Regular Expression?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Contents of the re Module
+~~~~~~~~~~~~~~~~~~~~~~~~~
+다음을 보자.
+
+.. image:: ./img/chapter10-8.png
+
+.. code-block:: python
+
+    import re
+
+    some_text1='test,beta,,,,,gama,pat,delta'
+
+    print(re.search(some_text1,'pat'))
+
+    some_text = 'alpha, beta,,,,gamma delta'
+    print(re.split('[, ]+', some_text))
+
+
+    print(re.split('[, ]+', some_text, maxsplit=2))
+
+    print(re.split('[, ]+', some_text, maxsplit=1))
+
+
+    pat = '[a-zA-Z]+'
+    text = '"Hm... Err -- are you sure?" he said, sounding insecure.'
+    print(re.findall(pat, text))
+
+    pat = r'[.?\-",]+'
+    print(re.findall(pat, text))
+
+    pat = '{name}'
+    text = 'Dear {name}...'
+    print(re.sub(pat, 'Mr. Gumby', text))
+
+
+Match Objects and Groups
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: ./img/chapter10-9.png
+
+다음 예를 보자
+
+.. code-block:: python
+
+
+    import re
+
+    m = re.match(r'www\.(.*)\..{3}', 'www.python.org')
+
+    print(m.group(1))
+
+    print(m.start(1))
+
+    print(m.end(1))
+
+    print(m.span(1))
+
+Group Numbers and Functions in Substitutions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+skip
+
+다음 예를 보자.
+
+.. code-block:: python
+
+    # find_sender.py
+    import fileinput, re
+    pat = re.compile('From: (.*) <.*?>$')
+    for line in fileinput.input():
+        m = pat.match(line)
+        if m: print(m.group(1))
+
+A Sample Template System
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+template은 완성된 text 종류를 얻기위해 특별한 값을 넣을 수 있는 파일이다.
+
+다음 예를 보자.
+
+.. code-block:: python
+
+    # templates.py
+
+    import fileinput, re
+
+    # Matches fields enclosed in square brackets:
+    field_pat = re.compile(r'\[(.+?)\]')
+
+    # We'll collect variables in this:
+    scope = {}
+
+    # This is used in re.sub:
+    def replacement(match):
+        code = match.group(1)
+        try:
+            # If the field can be evaluated, return it:
+            return str(eval(code, scope))
+        except SyntaxError:
+            # Otherwise, execute the assignment in the same scope ...
+            #exec code in scope
+            # ... and return an empty string:
+            return ''
+
+    # Get all the text as a single string:
+
+    # (There are other ways of doing this; see Chapter 11)
+    lines = []
+    for line in fileinput.input():
+        lines.append(line)
+    text = ''.join(lines)
+
+    # Substitute all the occurrences of the field pattern:
+    print(field_pat.sub(replacement, text))
+
+Other Interesting Standard Modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+argparse:
+
+cmd:
+
+csv:
+
+datetime:
+
+difflib:
+
+enum:
+
+functools:
+
+itertools:
+
+logging:
+
+statistics:
+
+timeit, profile, and trace:
+
 
 
 
@@ -315,3 +741,28 @@ fileinput에 대해서 자세히 알아보자.
 10.4 A Quick Summary
 ------------------------
 
+Modules:
+~~~~~~~~~~~~
+A module is basically a subprogram whose main function is to define
+things, such as functions, classes, and variables. If a module contains any test
+code, it should be placed in an if statement that checks whether name == '__
+main__'. Modules can be imported if they are in the PYTHONPATH. You import a
+module stored in the file foo.py with the statement import foo.
+Packages:
+~~~~~~~~~~
+A package is just a module that contains other modules. Packages are
+implemented as directories that contain a file named __init__.py.
+Exploring modules: After you have imported a module into the interactive
+interpreter, you can explore it in many ways. Among them are using
+dir, examining the __all__ variable, and using the help function. The
+documentation and the source code can also be excellent sources of information
+and insight.
+The standard library:
+~~~~~~~~~~~~~~~~~~~~~~
+Python comes with several modules included, collectively
+called the standard library. Some of these were reviewed in this chapter:
+
+New Function
+~~~~~~~~~~~~~~~
+
+.. image:: ./img/chapter10-10.png
