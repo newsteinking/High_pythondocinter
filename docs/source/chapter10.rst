@@ -242,6 +242,73 @@ Use the Source
 10.3 The Standard Library; A Few Favorites
 --------------------------------------------
 
+sys
+~~~~~
+sys 모듈에서 사용가능한 변수들은 다음과 같다.
+
+.. image:: ./img/chapter10-2.png
+
+sys.argv 변수는 스크립트 이름을 포함하여 interpreter에게 전달되는 전달자를 포함한다.
+sys.exit는 현 프로그램을 종료한다.
+
+다음 예를 보자.
+
+.. code-block:: python
+
+    # reverseargs.py
+    import sys
+    args = sys.argv[1:]
+    args.reverse()
+    print(' '.join(args))
+
+
+os
+~~~~
+os module은 몇가지의 operation system 서비스에 대한 접근을 준다.
+os module은 확장적이다.
+몇가지 os 모듈에서 유용한 함수와 변수를 다음에 언급했다.
+
+
+.. image:: ./img/chapter10-3.png
+
+에를 들면 다음처럼 실해이 가능하다.
+
+os.system('/usr/bin/firefox')
+
+os.system(r'C:\"Program Files (x86)"\"Mozilla Firefox"\firefox.exe')
+
+os.startfile(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
+
+fileinput
+~~~~~~~~~~
+11장에서 파일 처리하는 여러가지 법을 배울 것이다.
+fileinput은 라인에 있는 모든 파일을 처리할 수 있게 도와준다.
+
+$ python some_script.py file1.txt file2.txt file3.txt
+
+또는
+
+$ cat file.txt | python some_script.py
+
+fileinput에 대해서 자세히 알아보자.
+
+.. image:: ./img/chapter10-4.png
+
+.. code-block:: python
+
+    # numberlines.py
+    import fileinput
+    for line in fileinput.input(inplace=True):
+    line = line.rstrip()
+    num = fileinput.lineno()
+    print('{:<50} # {:2d}'.format(line, num))
+    If you run this program on itself, like this:
+    $ python numberlines.py numberlines.py
+
+
+
+
+
 
 
 
