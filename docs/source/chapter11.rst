@@ -232,3 +232,18 @@ sys.stdin is iterable
 
 11.4 A Quick Summary
 ----------------------------------------
+
+File-like objects:
+~~~~~~~~~~~~~~~~~~~
+A file-like object is (informally) an object that supports a set of
+methods such as read and readline (and possibly write and writelines).
+Opening and closing files:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You open a file with the open function, by supplying
+a file name. If you want to make sure your file is closed, even if something goes
+wrong, you can use the with statement.
+
+New Functions
+~~~~~~~~~~~~~~~
+
+.. image:: ./img/chapter11-2.png
